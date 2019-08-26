@@ -70,3 +70,52 @@ def my_flatten(arr)
     returnArr
 end
 
+def my_zip(*args)
+    returnArr = Array.new(self.length) { Array.new(args.length + 1) }
+
+    self.each.with_index do |ele, idx|
+        returnArr[idx][0] = ele
+    end
+
+    n = 1
+
+    args.each do |ele2|
+        m = 0
+        ele2.each.with_index do |ele3, idx2|
+            if idx2 >= self.length
+                next
+            else
+                returnArr[m][n] = ele3
+                m += 1
+            end
+        end
+        n += 1
+    end
+
+    returnArr
+end
+
+def my_join(spc = "")
+    returnStr = ""
+
+    self.each do |ele|
+        returnStr += (ele + spc)
+    end
+
+    returnStr
+
+end
+
+def my_reverse
+    n = (self.length - 1)
+    revArr = []
+
+    while n >= 0
+        revArr << self[n]
+        n -= 1
+    end
+
+    revArr
+
+end
+
