@@ -1,5 +1,5 @@
 class Player
-    def get_answer
+    def getAnswer
         print "Enter a letter: "
         user_input = gets.chomp
 

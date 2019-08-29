@@ -4,14 +4,33 @@ require_relative "fragment"
 
 class Ghost
 
-    attr_reader :Player
+    attr_reader :player, :fragment
     
-    def initialize(letter)
+    def initialize
         @player = Player.new
-        @fragment = Fragment.new(letter)
+        @fragment = Fragment.new(@player.getAnswer)
     end
 
-    # def turn
-    #     if @fragment
-    # end
+    def lose?
+        if @fragment.anyMore? == false
+            print
+            print "You lose"
+            return true
+        else
+            return false
+        end
+    end
+
+    def game_over?
+        if lose? == true
+            return true
+        else
+            return false
+        end
+    end
+
+    def turn
+        @fragment.checkDict(@player.getAnswer)
+
+    end
 end
