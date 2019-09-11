@@ -5,8 +5,8 @@ class Card
         @grid = Array.new(3) { Array.new(3, "") }
     end
 
-    def hide
-        return @faceDown
+    def hide(aPos)
+        @faceDown[aPos] = " "
     end
     
     def reveal(arr) #Take in an array, and reveal grid value.

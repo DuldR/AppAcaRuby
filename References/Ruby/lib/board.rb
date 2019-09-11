@@ -1,7 +1,7 @@
 class Board
 
     def initialize
-        @grid = Array.new(4) { Array.new(4, " ") }
+        @grid = Array.new(5) { Array.new(5, " ") }
     end
 
     def print_grid
@@ -11,8 +11,42 @@ class Board
     end
 
     def format_grid
-        @grid = ["", 0, 1, 2].zip(@grid)
-        @grid[0][0] = [" ", 0, 1, 2]
+        n = -1
+
+        @grid.each do |row|
+            row[0] = n
+            n += 1
+        end
+
+        @grid[0] = [" ", 0, 1, 2, 3]
         return @grid
     end
+
+    def num_pairs(n)
+        @grid.flatten.count(n)
+    end
+
+    # Get and Set Position Methods
+
+    def [](position) #Offset the position by 1 due to the legend
+        pRow = position[0]
+        pColumn = position[1]
+
+        @grid[pRow + 1][pColumn + 1]
+    end
+
+    def []=(sPos, val) #Offset the user input by 1 due to the legend
+        pRos = sPos[0]
+        pColumn = sPos[1]
+        @grid[pRos + 1][pColumn + 1] = val
+    
+    end
+
+    def place_pairs
+
+
+    end
+
+
+
 end
