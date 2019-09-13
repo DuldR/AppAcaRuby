@@ -42,8 +42,18 @@ class Board
     
     end
 
-    def place_pairs
+    def count_pairs
+        @grid[1..-1].each do |row|
+            if row[1..-1].count(" ") > 0
+                return true
+            else
+                return false
+            end
+        end
+    end
 
+    def fill_pairs
+        
 
     end
 
