@@ -89,7 +89,7 @@ class Board
 
     def compare(aPos) #Pulls in answer and returns the solution grid.
 
-        cRow, cColumn = [aPos]
+        cRow, cColumn = aPos
 
         return @grid[cRow + 1][cColumn + 1]
 
@@ -97,9 +97,10 @@ class Board
 
     def place(aPos) #Modifies the answer grid if the given cards match.
 
-        cRow, cColumn = [aPos]
+
 
         aPos.each do |item|
+            cRow, cColumn = item
             @hGrid[cRow + 1][cColumn + 1] = @grid[cRow + 1][cColumn + 1]
         end
 
