@@ -75,6 +75,9 @@ class Board
 
     # Grid Manipulation
 
+    def arrBreak(aPos)
+    end
+
     def show(pPos)
 
         cRow = pPos[0]
@@ -86,6 +89,24 @@ class Board
             p "That's not a valid answer"
             return false
         end
+    end
+
+    def compare(aPos)
+        cRow = aPos[0]
+        cColumn = aPos[1]
+
+        return @grid[cRow + 1][cColumn + 1]
+
+    end
+
+    def place(aPos)
+
+        aPos.each do |item|
+            cRow = item[0]
+            cColumn = item[1]
+            @hGrid[cRow + 1][cColumn + 1] = @grid[cRow + 1][cColumn + 1]
+        end
+
     end
 
     def valid?(pPos) #Checks for valid answer
