@@ -10,7 +10,6 @@ class Board
         @grid = Array.new(5) { Array.new(5, " ") }
         @hGrid = []
         @sGrid = []
-        @anwers = []
     end
 
     # Grid Setup
@@ -43,7 +42,7 @@ class Board
         end
     end
 
-    def fill_pairs
+    def fill_pairs #Could make this scaleable, but as of now uses known pairs. Shuffles then fills into solution grid.
         n = 0
         fillArr = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8]
         fillArr = fillArr.shuffle
@@ -59,29 +58,26 @@ class Board
     # Get and Set Position Methods
 
     def [](position) #Offset the position by 1 due to the legend
-        pRow = position[0]
-        pColumn = position[1]
 
+        pRow, pColumn = position
         @sGrid[pRow + 1][pColumn + 1]
+
     end
 
     def []=(sPos, val) #Offset the user input by 1 due to the legend
-        pRos = sPos[0]
-        pColumn = sPos[1]
-        @sGrid[pRos + 1][pColumn + 1] = val
+
+        pRow, pColumn = sPos
+        @sGrid[pRow + 1][pColumn + 1] = val
     
     end
 
 
     # Grid Manipulation
 
-    def arrBreak(aPos)
-    end
+    def show(pPos) #Modifies the shown grid to the player and makes judgement if the answer is viable.
 
-    def show(pPos)
+        cRow, cColumn = pPos
 
-        cRow = pPos[0]
-        cColumn = pPos[1]
         if valid?(pPos) == true
             self[pPos] = @grid[cRow + 1][cColumn + 1]
             return true
@@ -91,19 +87,19 @@ class Board
         end
     end
 
-    def compare(aPos)
-        cRow = aPos[0]
-        cColumn = aPos[1]
+    def compare(aPos) #Pulls in answer and returns the solution grid.
+
+        cRow, cColumn = [aPos]
 
         return @grid[cRow + 1][cColumn + 1]
 
     end
 
-    def place(aPos)
+    def place(aPos) #Modifies the answer grid if the given cards match.
+
+        cRow, cColumn = [aPos]
 
         aPos.each do |item|
-            cRow = item[0]
-            cColumn = item[1]
             @hGrid[cRow + 1][cColumn + 1] = @grid[cRow + 1][cColumn + 1]
         end
 

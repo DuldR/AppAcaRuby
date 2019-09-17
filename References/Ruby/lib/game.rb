@@ -35,7 +35,7 @@ class Game
         @board.fill_pairs
     end
 
-    def compare(ans)
+    def compare(ans) #Compares the board answers and if they match, modify the answer grid and reset. If not, reset to previous state.
         if @board[ans[0]] == @board[ans[1]]
             p "They match!"
             p "------------"
@@ -58,7 +58,7 @@ class Game
         @board.print_shown
 
         p "Pick a coord"
-        while answers.length < 2
+        while answers.length < 2 #ENsures two answers are given.
             if @board.show(@card.get_move) == true
                 answers << @card.ret_ans
             else
@@ -67,8 +67,6 @@ class Game
             @board.print_shown
             p "------------------------------"
         end
-
-        @board.print_shown
 
         if self.compare(answers) == true
             @score += 1
