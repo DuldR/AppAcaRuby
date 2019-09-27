@@ -18,14 +18,13 @@ class Game
 
         while answers.length < 2 #Ensures two answers are given.
             if @board.valid_answer?(@board.get_pos) == true
-                answers << @board.pos
+                answers << @board.pos #Gets position and the answer.
                 answers << @board.get_ans
             else
                 p "That's not a valid option. Choose again."
             end
         end
 
-        p answers
         @board.ans_tile(answers)
         
         @board.render_grid

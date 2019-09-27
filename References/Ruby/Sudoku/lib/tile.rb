@@ -19,8 +19,6 @@ class Tile
         @tile
     end
 
-  
-
     def set_tile(newAns)
 
         if given? == true
