@@ -39,6 +39,7 @@ def exp(base, ex)
     base * exp(base, ex - 1)
 end
 
+#Recursion 2
 def exp2(base, ex)
 
     if ex == 2
@@ -52,5 +53,21 @@ def exp2(base, ex)
     else
         exp2(base, (ex / 2)) * exp2(base, (ex / 2))
     end
+
+end
+
+#Deep Dupe #Wow, I did it.
+
+def deep_dup(arr)
+
+    return arr if arr.is_a?(Array) == false
+
+    returnArr = []
+
+    arr.each do |item|
+        returnArr << deep_dup(item)
+    end
+
+    returnArr
 
 end

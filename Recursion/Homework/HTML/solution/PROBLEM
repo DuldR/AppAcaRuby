@@ -1,0 +1,15 @@
+HTML Semantic Containers Exercise
+Take yesterday's solution from HTML Introduction Exercise and add some more semantic structure:
+
+Create a header section at the top
+Add an img of the app-academy logo within the header section
+Add a nav element within the header, after the logo
+Cut and paste your unordered list of anchor links into the nav section
+Add an aside element
+Cut and paste all of the ingredients elements into the aside
+Put the recipe image inside of a figure element
+Add a figcaption element below the figure
+Cut the link to wikipedia from your description paragraph and paste it into the figcaption element
+Add a section element to contain the figure, description and instruction elements
+Add a footer element at the bottom
+Add a p element in the footer with some text/link about where the recipe originated from
