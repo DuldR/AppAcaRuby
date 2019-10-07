@@ -146,7 +146,45 @@ def subset(arr)
     # [[]] + [[]].map - x += 1 == [[], [1]] and so on.
     set.concat(set.map { |x| x += [arr.last] })
 
+end
+
+def perm(arr) #I don't know.
+    return [arr] if arr.length < 2
+
+    arr.flat_map do |ele|
+        perm(arr - [ele]).map do |per|
+            ([ele] + per)
+        end
+    end
+end
+
+# def make_change(amount, coins)
+
+#     if amount == 0
+#         return [0]
+#     elsif amount < 0
+#         return [-1]
+#     else
+#         return [coins[0]]
+#     end
+
+#     change = []
+
+#     total = make_change((amount - coins[0]), coins)
 
 
+# end
+
+def add_it(amount, counter) #I'm out of ideas.
+
+    return [] if amount <= 0 || counter[0] > amount
+
+    total = []
+
+    counter.each do |ele|
+        total += (add_it(amount-ele, [ele]) + [ele])
+    end
+
+    total
 
 end
