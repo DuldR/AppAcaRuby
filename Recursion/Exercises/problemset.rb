@@ -83,7 +83,6 @@ def fib(n)
 end
 
 
-
 def binary_search(array, key, low=0, high=array.size-1)  
     return nil if low > high  
     mid = (low + high) / 2  
@@ -96,32 +95,6 @@ def binary_search(array, key, low=0, high=array.size-1)
 
     binary_search(array, key, low, high)   
 end   
-
-# def bin(arr, n)
-#     value = []
-
-#     if arr[0] != n
-#         value << 
-#     else
-#         value << bin(arr[1..-1], n)
-#     end
-
-# end
-
-
-# def bin(arr, n)
-#     value = 0
-
-#     if arr[0] == n
-#         return 0
-#     elsif arr.length == 0
-#         return 1
-#     else
-#         value = (1 + bin(arr[1..-1], n))
-#     end
-
-#     return value
-# end
 
 def merge_sort(arr)
 
@@ -155,5 +128,25 @@ def merge(left, right)
     #You must add the sorted and remaining arrays together.
     #This ensures you've sorted it correctly.
     sorted + left + right
+
+end
+
+def subset(arr)
+
+
+    return [[]] if arr.empty?
+
+    # Will take [1] and return [] thus compelting the base case.
+    set = subset(arr[0...-1])
+
+    #This takes the return array, [[]] and MAPS it with the given array's last element.
+    # You then ADD that mapped array with concate to the original array.
+    # [[]] + [[]].map with x += array last.
+    # Array = [1]
+    # [[]] + [[]].map - x += 1 == [[], [1]] and so on.
+    set.concat(set.map { |x| x += [arr.last] })
+
+
+
 
 end
