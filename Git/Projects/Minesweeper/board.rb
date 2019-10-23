@@ -7,18 +7,15 @@ class Board
 
     def self.print_grid(tGrid)
 
-        puts " #{(0..2).to_a.join(" ")}"
+        puts "  #{(0..2).to_a.join(" ")}"
         tGrid.each.with_index do |row, rdx|
             rGrid = []
 
             row.each.with_index do |item, idx|
                 rGrid << tGrid[rdx][idx].show_tile
             end
-            puts rGrid.join(" ")
+            puts "#{rdx} #{rGrid.join(" ")}"
 
-            # grid.each_with_index do |row, i|
-            #   puts "#{i} #{row.join(" ")}"
-            # end
         end
     end
 
@@ -28,6 +25,8 @@ class Board
         @bombs = []
     end
 
+    # Preparing grid with random bombs
+
     def prep_bombs
         4.times { @bombs << "X" }
         5.times { @bombs << "O" }
@@ -36,7 +35,6 @@ class Board
 
 
     def fill_bombs
-
         pos = 0
         prep_bombs
 
@@ -46,10 +44,26 @@ class Board
                 pos += 1
             end
         end
-
-
     end
 
+    # User Input
+
+    def turn
+        user_input = gets.chomp
+        @grid[user_input]
+    end
+
+    #TODO
+    # UserInput.split(",").map { |char| Integer(char) }
+    # Maps user input into usable array
+
+    def [](pos)
+        x, y = pos
+        @grid[x][y].reveal
+    end
+
+
+    # UI Management
 
     def render
         Board.print_grid(@grid)

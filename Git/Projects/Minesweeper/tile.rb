@@ -16,14 +16,15 @@ class Tile
     def show_tile
 
         if @ans == false
-            return "O"
+            return "*"
         else
             return @tile
         end
         
     end
 
-    
-
+    def reveal
+        @ans == true
+    end
 
 end
