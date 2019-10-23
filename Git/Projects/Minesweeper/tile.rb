@@ -1,7 +1,8 @@
 class Tile
 
-    def initialize(bomb)
-        @tile = bomb
+    def initialize(n)
+        @tile = n
+        @ans = false
 
         if @tile == "O"
             @bomb = false
@@ -9,11 +10,20 @@ class Tile
             @bomb = true
         end
 
+
     end
 
     def show_tile
-        @tile
+
+        if @ans == false
+            return "O"
+        else
+            return @tile
+        end
+        
     end
+
+    
 
 
 end

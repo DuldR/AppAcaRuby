@@ -7,16 +7,21 @@ class Board
 
     def self.print_grid(tGrid)
 
+        puts " #{(0..2).to_a.join(" ")}"
         tGrid.each.with_index do |row, rdx|
             rGrid = []
 
             row.each.with_index do |item, idx|
                 rGrid << tGrid[rdx][idx].show_tile
             end
-
             puts rGrid.join(" ")
+
+            # grid.each_with_index do |row, i|
+            #   puts "#{i} #{row.join(" ")}"
+            # end
         end
     end
+
 
     def initialize
         @grid = Array.new(3) { Array.new(3, "O") }
