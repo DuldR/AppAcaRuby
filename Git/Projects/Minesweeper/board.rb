@@ -1,11 +1,20 @@
+require "tile"
+
 class Board
 
     attr_reader :grid
 
 
     def self.print_grid(tGrid)
-        tGrid.each do |row|
-            puts row.join(" ")
+
+        tGrid.each.with_index do |row, rdx|
+            rGrid = []
+
+            row.each.with_index do |item, idx|
+                rGrid << tGrid[rdx][idx].show_tile
+            end
+
+            puts rGrid.join(" ")
         end
     end
 
@@ -28,7 +37,7 @@ class Board
 
         @grid.each.with_index do |foo, rdx|
             foo.each.with_index do |bar, cdx|
-                @grid[rdx][cdx] = @bombs[pos]
+                @grid[rdx][cdx] = Tile.new(@bombs[pos])
                 pos += 1
             end
         end
