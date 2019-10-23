@@ -48,10 +48,15 @@ class Board
 
     # User Input
 
-    def turn
-        user_input = gets.chomp
-        @grid[user_input]
+    def parse_input(string)
+        string.split(",").map { |char| Integer(char) }
     end
+
+    def turn
+        user_input = parse_input(gets.chomp)
+        self[user_input]
+    end
+
 
     #TODO
     # UserInput.split(",").map { |char| Integer(char) }
@@ -70,6 +75,3 @@ class Board
     end
 
 end
-
-b = Board.new
-b.fill_bombs
