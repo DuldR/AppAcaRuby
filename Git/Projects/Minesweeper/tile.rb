@@ -27,4 +27,5 @@ class Tile
         @ans = true
     end
 
+
 end

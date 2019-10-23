@@ -33,7 +33,6 @@ class Board
         @bombs = @bombs.shuffle
     end
 
-
     def fill_bombs
         pos = 0
         prep_bombs
@@ -46,6 +45,13 @@ class Board
         end
     end
 
+    # Reveal Algorithm
+
+    def neighbor_bombs?(pos)
+        
+
+    end
+
     # User Input
 
     def parse_input(string)
@@ -54,15 +60,16 @@ class Board
 
     def turn
         user_input = parse_input(gets.chomp)
-        self[user_input]
+        if self[user_input] == "O"  #Calls upon the board object itself using the user input.
+            neighbor_bombs?(user_input)
+            self[user_input]
+        else
+            puts "You lose."
+        end
     end
 
 
-    #TODO
-    # UserInput.split(",").map { |char| Integer(char) }
-    # Maps user input into usable array
-
-    def [](pos)
+    def [](pos) #This acts on the Board object. Must call upon itself.
         x, y = pos
         @grid[x][y].reveal
     end
