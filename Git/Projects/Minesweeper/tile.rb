@@ -24,7 +24,7 @@ class Tile
     end
 
     def reveal
-        @ans == true
+        @ans = true
     end
 
 end
