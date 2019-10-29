@@ -13,6 +13,7 @@ class MineGame
 
         until done == true
             @board.render
+            @board.cheat_render
 
             puts "Enter a coordinate: "
             @board.turn

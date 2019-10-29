@@ -27,5 +27,13 @@ class Tile
         @ans = true
     end
 
+    def tile_ans
+        @tile
+    end
+
+    def cheat
+        @tile
+    end
+
 
 end
