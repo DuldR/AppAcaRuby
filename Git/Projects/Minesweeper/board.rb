@@ -7,7 +7,7 @@ class Board
 
     def self.print_grid(tGrid)
 
-        puts "  #{(0..2).to_a.join(" ")}"
+        puts "  #{(0..8).to_a.join(" ")}"
         tGrid.each.with_index do |row, rdx|
             rGrid = []
 
@@ -21,7 +21,7 @@ class Board
 
     def self.print_grid_cheat(tGrid)
 
-        puts "  #{(0..2).to_a.join(" ")}"
+        puts "  #{(0..8).to_a.join(" ")}"
         tGrid.each.with_index do |row, rdx|
             rGrid = []
 
@@ -35,15 +35,15 @@ class Board
 
 
     def initialize
-        @grid = Array.new(3) { Array.new(3, "O") }
+        @grid = Array.new(9) { Array.new(9, "O") }
         @bombs = []
     end
 
     # Preparing grid with random bombs
 
     def prep_bombs
-        4.times { @bombs << "X" }
-        5.times { @bombs << "O" }
+        10.times { @bombs << "X" }
+        71.times { @bombs << "O" }
         @bombs = @bombs.shuffle
     end
 
@@ -102,8 +102,16 @@ class Board
         neighborArr = valid_space_check?(neighborArr)
 
 
+        # neighborArr.each do |pos|
+        #     self[pos].reveal
+        # end
+
         neighborArr.each do |pos|
-            print pos
+            if self[pos].tile_ans == "O"
+                self[pos].reveal
+            else
+                next
+            end
         end
     end
         
