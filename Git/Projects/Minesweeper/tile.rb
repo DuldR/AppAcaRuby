@@ -23,6 +23,10 @@ class Tile
         
     end
 
+    def check_ans
+        @ans
+    end
+
     def reveal
         @ans = true
     end
@@ -30,10 +34,5 @@ class Tile
     def tile_ans
         @tile
     end
-
-    def cheat
-        @tile
-    end
-
 
 end

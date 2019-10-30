@@ -26,7 +26,7 @@ class Board
             rGrid = []
 
             row.each.with_index do |item, idx|
-                rGrid << tGrid[rdx][idx].cheat
+                rGrid << tGrid[rdx][idx].tile_ans
             end
             puts "#{rdx} #{rGrid.join(" ")}"
 
@@ -37,6 +37,21 @@ class Board
     def initialize
         @grid = Array.new(9) { Array.new(9, "O") }
         @bombs = []
+        @lose = false
+    end
+
+    # Win/Lose Criteria
+
+    def game_over?
+        if @lose == true
+            return true
+        else
+            return false
+        end
+    end
+
+    def lose?
+        @lose = true
     end
 
     # Preparing grid with random bombs
@@ -66,15 +81,17 @@ class Board
         checkArr= []
         colArr = []
 
-        rowChecks = (pos[1]-1..pos[1]+1).to_a
-        colChecks = (pos[0]-1..pos[0]+1).to_a
+        colChecks = (pos[1]-1..pos[1]+1).to_a
+        rowChecks = (pos[0]-1..pos[0]+1).to_a
 
         # rowChecks.each.with_index do |row, idx|
         #     checkArr << [pos[0], rowChecks[idx]]
         # end
 
-        rowChecks.each.with_index do |row, idx|
-            checkArr << [colChecks[idx], pos[idx],]
+        rowChecks.each do |row|
+            colChecks.each do |col|
+                checkArr << [row, col]
+            end
         end
 
         checkArr
@@ -102,9 +119,6 @@ class Board
         neighborArr = valid_space_check?(neighborArr)
 
 
-        # neighborArr.each do |pos|
-        #     self[pos].reveal
-        # end
 
         neighborArr.each do |pos|
             if self[pos].tile_ans == "O"
@@ -125,13 +139,15 @@ class Board
     def turn
         user_input = parse_input(gets.chomp)
 
-        if self[user_input].tile_ans == "O"  #Calls upon the board object itself using the user input.
-            puts "Reveal"
+        if self[user_input].check_ans == true
+            puts "You can't pick a revealed spot."
+        elsif self[user_input].tile_ans == "O"  #Calls upon the board object itself using the user input.
             reveal_spaces(user_input)
-            puts "Set"
             self[user_input].reveal
         else
             puts "You lose."
+            self.cheat_render
+            lose?
         end
     end
 

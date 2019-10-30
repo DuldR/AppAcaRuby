@@ -9,11 +9,10 @@ class MineGame
 
     def run
 
-        done = false
 
-        until done == true
+        until @board.game_over? == true
             @board.render
-            @board.cheat_render
+            # @board.cheat_render
 
             puts "Enter a coordinate: "
             @board.turn
