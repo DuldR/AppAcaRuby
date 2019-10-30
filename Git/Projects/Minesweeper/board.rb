@@ -69,12 +69,12 @@ class Board
         rowChecks = (pos[1]-1..pos[1]+1).to_a
         colChecks = (pos[0]-1..pos[0]+1).to_a
 
-        rowChecks.each.with_index do |row, idx|
-            checkArr << [pos[0], rowChecks[idx]]
-        end
+        # rowChecks.each.with_index do |row, idx|
+        #     checkArr << [pos[0], rowChecks[idx]]
+        # end
 
         rowChecks.each.with_index do |row, idx|
-            checkArr << [colChecks[idx], pos[1],]
+            checkArr << [colChecks[idx], pos[idx],]
         end
 
         checkArr
