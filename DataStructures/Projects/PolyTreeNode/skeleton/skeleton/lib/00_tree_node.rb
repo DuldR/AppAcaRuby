@@ -33,6 +33,8 @@ class PolyTreeNode
         child_node.parent = nil
     end
 
+
+    # This code works but they don't want 2 arguments. Used a proc. Really.
     # def dfs(node, target_value)
 
     #     return node if node.value == target_value
@@ -46,6 +48,23 @@ class PolyTreeNode
 
 
     # end
+
+    def bfs(target_value)
+
+        queue = [self]
+
+        until queue.empty?
+            el = queue.shift
+
+            return el if el.value == target_value
+
+            el.children.each do |child|
+                queue << child
+            end
+        end
+
+
+    end
 
     def dfs(target = nil, &prc)
         raise "Need a proc or target" if [target, prc].none?
