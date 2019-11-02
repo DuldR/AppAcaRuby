@@ -24,6 +24,43 @@ class PolyTreeNode
 
     end
 
+    def add_child(child_node)
+        child_node.parent = self
+    end
+
+    def remove_child(child_node)
+        raise "3RR0R" if child_node.parent != self
+        child_node.parent = nil
+    end
+
+    # def dfs(node, target_value)
+
+    #     return node if node.value == target_value
+
+    #     children.each do |child|
+    #         search_result = dfs(child, target_value)
+    #     end
+
+    #     return search_result unless nil?
+
+
+
+    # end
+
+    def dfs(target = nil, &prc)
+        raise "Need a proc or target" if [target, prc].none?
+        prc ||= Proc.new { |node| node.value == target }
+
+        return self if prc.call(self)
+
+        children.each do |child|
+            result = child.dfs(&prc)
+            return result unless result.nil?
+        end
+
+        nil
+    end
+
 
 end
 
