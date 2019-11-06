@@ -16,25 +16,9 @@ def valid_moves(pos)
 
     moves = movesR.clone
 
-    movesR.each do |i|
-        moves << i.reverse
-    end
-
     return moves.select.with_index do |arr, idx|
         arr if arr.all? { |item| item < 8 && item > 0 }
     end
-
-end
-
-def out_of_bounds?(arr)
-
-    arr.each do |item|
-        return true if item > 7 || item < 0
-    end
-
-end
-
-def select_test(arr)
 
 end
 
