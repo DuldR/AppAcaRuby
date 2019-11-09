@@ -1,97 +1,88 @@
-module Searchable
-    # I wrote this as a mixin in case I wanted to later write another
-    # TreeNode class (e.g., BinaryTreeNode). All I need is `#children` and
-    # `#value` for `Searchable` to work.
-  
-    def dfs(target = nil, &prc)
-      raise "Need a proc or target" if [target, prc].none?
-      prc ||= Proc.new { |node| node.value == target }
-  
-      return self if prc.call(self)
-  
-      children.each do |child|
-        result = child.dfs(&prc)
-        return result unless result.nil?
-      end
-  
-      nil
-    end
-  
-    def bfs(target = nil, &prc)
-      raise "Need a proc or target" if [target, prc].none?
-      prc ||= Proc.new { |node| node.value == target }
-  
-      nodes = [self]
-      until nodes.empty?
-        node = nodes.shift
-  
-        return node if prc.call(node)
-        nodes.concat(node.children)
-      end
-  
-      nil
-    end
-  
-    def count
-      1 + children.map(&:count).inject(:+)
-    end
-end
-  
 class PolyTreeNode
-    include Searchable
-  
-    attr_accessor :value
-    attr_reader :parent
 
-  
-    def initialize(value = nil)
-      @value, @parent, @children = value, nil, []
+    attr_reader :parent, :children, :value
+
+    def initialize(value)
+        @value = value
+        @parent = nil
+        @children = []
+
+
     end
-  
-    def children
-      # We dup to avoid someone inadvertently trying to modify our
-      # children directly through the children array. Note that
-      # `parent=` works hard to make sure children/parent always match
-      # up. We don't trust our users to do this.
-      @children.dup
-    end
-    
-  
+
     def parent=(parent)
-      return if self.parent == parent
-  
-      # First, detach from current parent.
-      if self.parent
-        self.parent._children.delete(self)
-      end
-  
-      # No new parent to add this to.
-      @parent = parent
-      self.parent._children << self unless self.parent.nil?
-  
-      self
+
+        self.parent.children.delete(self) if @parent.nil? == false
+
+        @parent = parent
+
+
+
+        if parent.nil? == false && self.parent.children.include?(self) == false 
+            self.parent.children << self
+        end
+
     end
-  
-    def add_child(child)
-      # Just reset the child's parent to us!
-      child.parent = self
+
+    def add_child(child_node)
+        child_node.parent = self
     end
-  
-    def remove_child(child)
-      # Thanks for doing all the work, `parent=`!
-      if child && !self.children.include?(child)
-        raise "Tried to remove node that isn't a child"
-      end
-  
-      child.parent = nil
+
+    def remove_child(child_node)
+        raise "3RR0R" if child_node.parent != self
+        child_node.parent = nil
     end
-  
-    protected
-    
-    # Protected method to give a node direct access to another node's
-    # children.
-    def _children
-      @children
+
+
+    # This code works but they don't want 2 arguments. Used a proc. Really.
+    # def dfs(node, target_value)
+
+    #     return node if node.value == target_value
+
+    #     children.each do |child|
+    #         search_result = dfs(child, target_value)
+    #     end
+
+    #     return search_result unless nil?
+
+
+
+    # end
+
+    def bfs(target_value)
+
+        queue = [self]
+
+        until queue.empty?
+            el = queue.shift
+
+            return el if el.value == target_value
+
+            el.children.each do |child|
+                queue << child
+            end
+        end
+
+
     end
+
+    def dfs(target = nil, &prc)
+        raise "Need a proc or target" if [target, prc].none?
+        prc ||= Proc.new { |node| node.value == target }
+
+        return self if prc.call(self)
+
+        children.each do |child|
+            result = child.dfs(&prc)
+            return result unless result.nil?
+        end
+
+        nil
+    end
+
+
 end
-  
+
+node1 = PolyTreeNode.new("root")
+node2 = PolyTreeNode.new("child1")
+node3 = PolyTreeNode.new("child2")
