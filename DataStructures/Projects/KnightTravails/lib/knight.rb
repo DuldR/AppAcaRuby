@@ -28,7 +28,6 @@ class KnightPathFinder
     def initialize(pos)
         @root = pos
         @considered_positions = []
-
     end
 
     def build_move_tree
@@ -51,7 +50,7 @@ class KnightPathFinder
     def new_move_positions(pos)
         new_moves = []
 
-        self.valid_moves(pos).each do |p|
+        KnightPathFinder.valid_moves(pos).each do |p|
             if @considered_positions.include?(p)
                 next
             else
@@ -63,12 +62,31 @@ class KnightPathFinder
         new_moves
     end
 
+    def find_path(end_pos)
+        trace_path_back(@root_node.bfs(end_pos))
+    end
+
+    def trace_path_back(tgt)
+        path_arr = [tgt.value]
+        final_node = tgt
+
+        until final_node == @root_node
+            final_node = final_node.parent
+            path_arr << final_node.value
+        end
+
+        return path_arr.reverse
+
+    end
+
 
 end
 
 
-b = KnightPathFinder.new([1,1])
+b = KnightPathFinder.new([0,0])
 b.build_move_tree
+b.find_path([7,6])
+b.find_path([6,2])
 
 
 

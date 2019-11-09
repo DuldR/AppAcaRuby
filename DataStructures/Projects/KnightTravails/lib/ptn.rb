@@ -34,20 +34,6 @@ class PolyTreeNode
     end
 
 
-    # This code works but they don't want 2 arguments. Used a proc. Really.
-    # def dfs(node, target_value)
-
-    #     return node if node.value == target_value
-
-    #     children.each do |child|
-    #         search_result = dfs(child, target_value)
-    #     end
-
-    #     return search_result unless nil?
-
-
-
-    # end
 
     def bfs(target_value)
 
@@ -82,7 +68,3 @@ class PolyTreeNode
 
 
 end
-
-node1 = PolyTreeNode.new("root")
-node2 = PolyTreeNode.new("child1")
-node3 = PolyTreeNode.new("child2")
