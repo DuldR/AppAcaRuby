@@ -20,12 +20,13 @@ class TicTacToeNode
     pot_moves = []
 
     if @board.rows.all? {|col| col.all?(&:nil?) }
-        # (0..2).each do |row|
-        #   (0..2).each do |col|
-        #     pot_moves << [row, col]
-        #   end
-        # end
-      9.times { pot_moves << TicTacToeNode.new(board, :o)}
+
+      if @next_mover_mark == :o
+        9.times { pot_moves << TicTacToeNode.new(board, :x)}
+      else
+        9.times { pot_moves << TicTacToeNode.new(board, :o)}
+      end
+
     end
 
     
