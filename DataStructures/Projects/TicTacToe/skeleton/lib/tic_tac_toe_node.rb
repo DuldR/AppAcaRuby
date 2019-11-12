@@ -10,6 +10,45 @@ class TicTacToeNode
   end
 
   def losing_node?(evaluator)
+
+    #need to use children in this evaluation.
+
+    
+    # print (evaluator == @board.winner || @board.winner.nil?)
+
+    # if (evaluator == @board.winner || @board.winner.nil?) && @board.over?
+    #   return false
+    # elsif @next_mover_mark == @board.winner && @board.over?
+    #   return true
+    # elsif evaluator != @board.winner && board.over?
+    #   return true
+    # elsif @board.winner.nil? && evaluator == @next_mover_mark
+    #   return true
+    # end
+
+
+
+    # if (evaluator == @board.winner.nil? || evaluator == @board.winner) && evaluator == @next_mover_mark
+    #   return true
+    # elsif (evaluator == @board.winner || @board.winner.nil?) && evaluator != @next_mover_mark
+    #   return false
+    # else
+    #   return true
+    # end
+
+    # if (evaluator == @board.winner || @board.winner.nil?) && evaluator != @next_mover_mark
+    #   return false
+    # else
+    #   return true
+    # end
+
+    # return false if evaluator == @board.winner
+    # return true if evaluator == @next_move_mark && evaluator == @board.winner
+
+    # if evaluator == @board.winner
+    #   return false
+    # end
+    
   end
 
   def winning_node?(evaluator)
