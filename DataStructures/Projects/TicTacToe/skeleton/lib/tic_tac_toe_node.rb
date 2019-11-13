@@ -64,10 +64,14 @@ class TicTacToeNode
 
       if @next_mover_mark == :o
         prev_pos.each do |pos|
-          pot_moves << TicTacToeNode.new(board.dup, :x, pos)
+          new_board = board.dup
+          new_board[pos] = self.next_mover_mark
+          pot_moves << TicTacToeNode.new(new_board, :x, pos)
         end
       else
         prev_pos.each do |pos|
+          new_board = board.dup
+          new_board[pos] = self.next_mover_mark
           pot_moves << TicTacToeNode.new(board.dup, :o, pos)
         end
       end
