@@ -20,48 +20,20 @@ class TicTacToeNode
       self.children.any? { |node| node.board.winner == next_mover_mark}
     end
 
-
-    #need to use children in this evaluation.
-
-    
-    # print (evaluator == @board.winner || @board.winner.nil?)
-
-    # if (evaluator == @board.winner || @board.winner.nil?) && @board.over?
-    #   return false
-    # elsif @next_mover_mark == @board.winner && @board.over?
-    #   return true
-    # elsif evaluator != @board.winner && board.over?
-    #   return true
-    # elsif @board.winner.nil? && evaluator == @next_mover_mark
-    #   return true
-    # end
-
-
-
-    # if (evaluator == @board.winner.nil? || evaluator == @board.winner) && evaluator == @next_mover_mark
-    #   return true
-    # elsif (evaluator == @board.winner || @board.winner.nil?) && evaluator != @next_mover_mark
-    #   return false
-    # else
-    #   return true
-    # end
-
-    # if (evaluator == @board.winner || @board.winner.nil?) && evaluator != @next_mover_mark
-    #   return false
-    # else
-    #   return true
-    # end
-
-    # return false if evaluator == @board.winner
-    # return true if evaluator == @next_move_mark && evaluator == @board.winner
-
-    # if evaluator == @board.winner
-    #   return false
-    # end
     
   end
 
   def winning_node?(evaluator)
+
+    if evaluator == @board.winner
+      return true
+    elsif evaluator == next_mover_mark && @board.winner.nil?
+      self.children.any? { |node| node.board.winner == evaluator}
+    elsif evaluator != next_mover_mark && @board.winner.nil?
+      self.children.all? { |node| node.board.winner == next_mover_mark }
+    else
+      return false
+    end
   end
 
   # This method generates an array of all moves that can be made after
@@ -80,25 +52,6 @@ class TicTacToeNode
 
     end
 
-
-    
-    # if @board.rows.all? {|col| col.all?(&:nil?) }
-
-    #   if @next_mover_mark == :o
-    #     prev_pos.each do |pos|
-    #       new_board = @board.dup
-    #       new_board[pos] = self.next_mover_mark
-    #       pot_moves << TicTacToeNode.new(new_board, :x, pos)
-    #     end
-    #   else
-    #     prev_pos.each do |pos|
-    #       new_board = @board.dup
-    #       new_board[pos] = self.next_mover_mark
-    #       pot_moves << TicTacToeNode.new(board.dup, :o, pos)
-    #     end
-    #   end
-
-    # end
 
     
     pot_moves
