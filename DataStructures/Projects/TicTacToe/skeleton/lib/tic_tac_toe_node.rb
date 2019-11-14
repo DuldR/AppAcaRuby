@@ -1,7 +1,7 @@
 require_relative 'tic_tac_toe'
 
 class TicTacToeNode
-  attr_reader :board, :next_mover_mark, :children, :prev_move_pos
+  attr_reader :board, :next_mover_mark, :prev_move_pos
 
   def initialize(board, next_mover_mark, prev_move_pos = nil)
     @board = board
@@ -10,6 +10,16 @@ class TicTacToeNode
   end
 
   def losing_node?(evaluator)
+    
+    if evaluator == @board.winner
+      return false
+    elsif evaluator == next_mover_mark
+      self.children.all? { |node| node.board.winner != evaluator }
+
+    elsif evaluator != next_mover_mark
+      self.children.any? { |node| node.board.winner == next_mover_mark}
+    end
+
 
     #need to use children in this evaluation.
 
@@ -60,23 +70,35 @@ class TicTacToeNode
     pot_moves = []
     prev_pos = [0, 1, 2].product([0, 1, 2])
 
-    if @board.rows.all? {|col| col.all?(&:nil?) }
+    prev_pos.each do |pos|
+      next unless board.empty?(pos)
+      new_board = @board.dup
+      new_board[pos] = self.next_mover_mark
+      next_mover_mark = (self.next_mover_mark == :x ? :o : :x)
 
-      if @next_mover_mark == :o
-        prev_pos.each do |pos|
-          new_board = board.dup
-          new_board[pos] = self.next_mover_mark
-          pot_moves << TicTacToeNode.new(new_board, :x, pos)
-        end
-      else
-        prev_pos.each do |pos|
-          new_board = board.dup
-          new_board[pos] = self.next_mover_mark
-          pot_moves << TicTacToeNode.new(board.dup, :o, pos)
-        end
-      end
+      pot_moves << TicTacToeNode.new(new_board, next_mover_mark, pos)
 
     end
+
+
+    
+    # if @board.rows.all? {|col| col.all?(&:nil?) }
+
+    #   if @next_mover_mark == :o
+    #     prev_pos.each do |pos|
+    #       new_board = @board.dup
+    #       new_board[pos] = self.next_mover_mark
+    #       pot_moves << TicTacToeNode.new(new_board, :x, pos)
+    #     end
+    #   else
+    #     prev_pos.each do |pos|
+    #       new_board = @board.dup
+    #       new_board[pos] = self.next_mover_mark
+    #       pot_moves << TicTacToeNode.new(board.dup, :o, pos)
+    #     end
+    #   end
+
+    # end
 
     
     pot_moves
