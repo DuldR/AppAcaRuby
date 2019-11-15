@@ -19,7 +19,6 @@ class TicTacToeNode
     elsif evaluator != next_mover_mark
       self.children.any? { |node| node.board.winner == next_mover_mark}
     end
-
     
   end
 
