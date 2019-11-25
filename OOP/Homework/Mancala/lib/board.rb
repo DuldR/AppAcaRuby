@@ -2,6 +2,9 @@ class Board
   attr_accessor :cups
 
   def initialize(name1, name2)
+    @cups = Array.new(14) { Array.new([:stone, :stone, :stone, :stone]) }
+    @cups[6] = []
+    @cups[13] = []
   end
 
   def place_stones
@@ -9,9 +12,19 @@ class Board
   end
 
   def valid_move?(start_pos)
+    unless start_pos <= 14 && start_pos >= 0
+      raise ArgumentError.new "Invalid starting cup"
+    end
+
+    if @cups[start_pos].empty?
+      raise ArgumentError.new "Starting cup is empty"
+    end
+
   end
 
   def make_move(start_pos, current_player_name)
+
+    @cups[start_pos] = []
   end
 
   def next_turn(ending_cup_idx)
