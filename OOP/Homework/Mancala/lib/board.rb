@@ -23,8 +23,38 @@ class Board
   end
 
   def make_move(start_pos, current_player_name)
+    
+    rock_index = start_pos
+    rock_dis = @cups[start_pos]
 
+    until rock_dis.empty? == true
+      rock_index += 1
+
+      if rock_index > 13
+        @cups[rock_index - 14] << rock_dis.shift
+      elsif rock_index == 13
+        next
+      else
+        @cups[rock_index] << rock_dis.shift
+      end
+    end
+
+    # rock_dis.each do |rock|
+
+    #   rock_index += 1
+
+    #   if rock_index > 14
+    #     @cups[rock_index - 15] << rock
+    #   elsif rock_index == 13
+    #     @cups[rock_index]
+    #   else
+    #     @cups[rock_index] << rock
+    #   end
+   
+      
+      
     @cups[start_pos] = []
+
   end
 
   def next_turn(ending_cup_idx)
