@@ -5,6 +5,9 @@ class Board
     @cups = Array.new(14) { Array.new([:stone, :stone, :stone, :stone]) }
     @cups[6] = []
     @cups[13] = []
+
+    @player_one = name1
+    @player_two = name2
   end
 
   def place_stones
@@ -12,7 +15,7 @@ class Board
   end
 
   def valid_move?(start_pos)
-    unless start_pos <= 14 && start_pos >= 0
+    unless start_pos <= 13 && start_pos >= 0
       raise ArgumentError.new "Invalid starting cup"
     end
 
@@ -26,39 +29,48 @@ class Board
     
     rock_index = start_pos
     rock_dis = @cups[start_pos]
+    @cups[start_pos] = []
 
     until rock_dis.empty? == true
       rock_index += 1
 
-      if rock_index > 13
-        @cups[rock_index - 14] << rock_dis.shift
-      elsif rock_index == 13
+      if rock_index == 6 && current_player_name == @player_two
         next
+      elsif rock_index == 13 && current_player_name == @player_one
+        next
+      elsif rock_index > 13
+        @cups[rock_index - 14] << rock_dis.shift
       else
         @cups[rock_index] << rock_dis.shift
       end
     end
 
-    # rock_dis.each do |rock|
+    
+    if rock_index > 13
+      rock_index -= 14
+    end
 
-    #   rock_index += 1
 
-    #   if rock_index > 14
-    #     @cups[rock_index - 15] << rock
-    #   elsif rock_index == 13
-    #     @cups[rock_index]
-    #   else
-    #     @cups[rock_index] << rock
-    #   end
-   
-      
-      
-    @cups[start_pos] = []
+    self.render
+
+    next_turn(rock_index)
 
   end
 
   def next_turn(ending_cup_idx)
     # helper method to determine whether #make_move returns :switch, :prompt, or ending_cup_idx
+
+    if ending_cup_idx == 6 || ending_cup_idx == 13
+      return :prompt
+    elsif @cups[ending_cup_idx].length == 1
+      return :switch
+    else
+      return ending_cup_idx
+    end
+    # if @cups[ending_cup_idx].length == 1
+    #   return :switch
+    # end
+
   end
 
   def render
@@ -75,3 +87,7 @@ class Board
   def winner
   end
 end
+
+b = Board.new("1", "2")
+b.cups[0] = []
+b.make_move(10, "2")
