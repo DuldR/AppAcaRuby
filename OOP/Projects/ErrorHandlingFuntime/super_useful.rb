@@ -1,6 +1,13 @@
 # PHASE 2
 def convert_to_int(str)
-  Integer(str)
+  begin
+    Integer(str)
+    
+  rescue ArgumentError => e
+    puts "That's not a valid input"
+    puts "Error was: #{e.message}"
+    return nil
+  end
 end
 
 # PHASE 3
