@@ -14,11 +14,24 @@ end
 FRUITS = ["apple", "banana", "orange"]
 
 def reaction(maybe_fruit)
-  if FRUITS.include? maybe_fruit
-    puts "OMG, thanks so much for the #{maybe_fruit}!"
-  else 
-    raise StandardError 
-  end 
+  # if FRUITS.include? maybe_fruit
+  #   puts "OMG, thanks so much for the #{maybe_fruit}!"
+  # else 
+  # rescue
+  # end 
+
+  begin
+    if FRUITS.include?(maybe_fruit)
+      puts "OMG, thanks so much for the #{maybe_fruit}!"
+    elsif maybe_fruit == "coffee"
+      ret
+    end
+  rescue ArgumentError => e
+    if maybe_fruit == "coffee"
+      puts "Wow, thanks for the coffee, but I want fruit!"
+      retry
+    end
+  end
 end
 
 def feed_me_a_fruit
