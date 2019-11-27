@@ -14,43 +14,47 @@ end
 FRUITS = ["apple", "banana", "orange"]
 
 def reaction(maybe_fruit)
-  # if FRUITS.include? maybe_fruit
-  #   puts "OMG, thanks so much for the #{maybe_fruit}!"
-  # else 
-  # rescue
-  # end 
 
-  begin
-    if FRUITS.include?(maybe_fruit)
-      puts "OMG, thanks so much for the #{maybe_fruit}!"
-    elsif maybe_fruit == "coffee"
-      ret
-    end
-  rescue ArgumentError => e
-    if maybe_fruit == "coffee"
-      puts "Wow, thanks for the coffee, but I want fruit!"
-      retry
-    end
-  end
+  if FRUITS.include? maybe_fruit
+    puts "OMG, thanks so much for the #{maybe_fruit}!"
+  else
+    raise "That ain't no fruit!"
+  end 
+
 end
 
 def feed_me_a_fruit
-  puts "Hello, I am a friendly monster. :)"
 
-  puts "Feed me a fruit! (Enter the name of a fruit:)"
-  maybe_fruit = gets.chomp
-  reaction(maybe_fruit) 
+  begin
+    puts "Hello, I am a friendly monster. :)"
+
+    puts "Feed me a fruit! (Enter the name of a fruit:)"
+    maybe_fruit = gets.chomp
+    reaction(maybe_fruit)
+  rescue
+    if maybe_fruit = "coffee"
+      puts "I's dearly luvs coffee. But I would prefer fruit!"
+      retry
+    end
+
+  end
 end  
 
 # PHASE 4
 class BestFriend
   def initialize(name, yrs_known, fav_pastime)
+    if name.length <= 0 || fav_pastime.length <= 0
+      raise "Raisin' Hell"
+    end
     @name = name
     @yrs_known = yrs_known
     @fav_pastime = fav_pastime
   end
 
   def talk_about_friendship
+    if @yrs_known < 5
+      raise "Lmao you think that's a bestie?!?!?"
+    end
     puts "Wowza, we've been friends for #{@yrs_known}. Let's be friends for another #{1000 * @yrs_known}."
   end
 
