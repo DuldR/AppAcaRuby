@@ -36,6 +36,17 @@ class Board
 
     end
 
+    def move_piece(start_pos, end_pos)
+
+        if self[start_pos].nil? == true || self[end_pos].nil? == false
+            raise "Invalid starting position or ending position"
+        end
+
+        self[end_pos] = self[start_pos]
+        self[start_pos] = nil
+
+    end
+
 end
 
 
