@@ -1,3 +1,5 @@
+require_relative "pieces/piece"
+
 class Board
 
     attr_reader :rows
@@ -50,17 +52,6 @@ class Board
 end
 
 
-class Piece
 
-    # def initialize(color, board, pos)
-    #     @color = color
-    #     @board = board
-    #     @pos = pos
-    # end
-
-    def initialize
-    end
-
-end
 
 b = Board.new
