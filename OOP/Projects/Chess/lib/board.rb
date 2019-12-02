@@ -18,6 +18,10 @@ class Board
         @rows[row][col] = val
     end
 
+    def empty?(pos)
+        self[pos].empty?
+    end
+
     def valid_pos?(pos)
         x, y = pos
 
@@ -47,6 +51,7 @@ class Board
         @rows = Array.new(8) { Array.new(8) }
 
         fill_back_row
+        test_rook
     end
 
     def fill_back_row
@@ -62,6 +67,13 @@ class Board
 
     end
 
+    #Testing rook capability
+
+    def test_rook
+        @rows[1][0] = Rook.new(:black, self, [1,0])
+    end
+
+    # Add the below to a display class
     def build_grid
         @rows.map.with_index do |row, idx|
             row.map do |col|
@@ -77,7 +89,6 @@ class Board
     def render
         build_grid.each { |row| puts row.join }
     end
-  end
 
 end
 
