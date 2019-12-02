@@ -4,20 +4,6 @@ class Board
 
     attr_reader :rows
 
-    def self.print_grid(tGrid)
-
-        puts "  #{(0..8).to_a.join(" ")}"
-        tGrid.each.with_index do |row, rdx|
-            rGrid = []
-
-            row.each.with_index do |item, idx|
-                rGrid << tGrid[rdx][idx].show_tile
-            end
-            puts "#{rdx} #{rGrid.join(" ")}"
-
-        end
-    end
-
     def initialize
         fill_grid
     end
@@ -54,28 +40,44 @@ class Board
 
     end
 
+    # Setting up board.
+
     def fill_grid
 
         @rows = Array.new(8) { Array.new(8) }
-        # @rows = @rows.map.with_index do |row, idx|
-        #     row.map do |pos|
-        #         if idx == 0 || idx == 1 || idx == 6 || idx == 7
-        #             pos = Piece.new
-        #         else
-        #             pos
-        #         end
-        #     end
-        # end
+
+        fill_back_row
     end
 
     def fill_back_row
+        @rows = @rows.map.with_index do |row,idx|
+            row.map.with_index do |col, cdx|
+                if idx == 0 || idx == 1
+                    col = Piece.new(:black, self, [idx, cdx])
+                elsif idx == 6 || idx == 7
+                    col = Piece.new(:white, self, [idx, cdx])
+                end
+            end
+        end
 
+    end
+
+    def build_grid
+        @rows.map.with_index do |row, idx|
+            row.map do |col|
+                if col.nil? == false
+                    col = col.color
+                else
+                    col = :x
+                end
+            end
+        end
     end
 
     def render
-        Board.print_grid(@row)
+        build_grid.each { |row| puts row.join }
     end
-
+  end
 
 end
 
