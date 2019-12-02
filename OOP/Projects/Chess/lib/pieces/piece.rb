@@ -6,7 +6,8 @@ class Piece
     #     @pos = pos
     # end
 
-    def initialize(board, pos)
+    def initialize(colors, board, pos)
+        @color = color
         @board = board
         @pos = pos
     end
