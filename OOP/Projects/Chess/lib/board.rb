@@ -5,6 +5,7 @@ class Board
     attr_reader :rows
 
     def initialize
+        @null = NullPiece.instance
         fill_grid
     end
 
@@ -48,7 +49,7 @@ class Board
 
     def fill_grid
 
-        @rows = Array.new(8) { Array.new(8) }
+        @rows = Array.new(8) { Array.new(8, @null) }
 
         fill_back_row
         test_rook
@@ -66,6 +67,7 @@ class Board
         end
 
     end
+
 
     #Testing rook capability
 
