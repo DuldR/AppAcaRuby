@@ -10,4 +10,8 @@ class Piece
         @pos = pos
     end
 
+    def empty?
+        false
+    end
+
 end

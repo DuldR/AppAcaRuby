@@ -1,7 +1,7 @@
 require_relative "piece"
 require_relative "slideable"
 
-class Rook < Piece
+class Queen < Piece
 
     include Slideable
 
@@ -10,7 +10,7 @@ class Rook < Piece
     end
 
     def move_dirs
-        hor_and_ver
+        diag
     end
 
 end

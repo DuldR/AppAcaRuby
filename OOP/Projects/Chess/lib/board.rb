@@ -30,6 +30,7 @@ class Board
             return false
         end
 
+
         return true
 
     end
@@ -62,6 +63,8 @@ class Board
                     col = Piece.new(:black, self, [idx, cdx])
                 elsif idx == 6 || idx == 7
                     col = Piece.new(:white, self, [idx, cdx])
+                else
+                    col
                 end
             end
         end
@@ -80,7 +83,7 @@ class Board
         @rows.map.with_index do |row, idx|
             row.map do |col|
                 if col.nil? == false
-                    col = col.color
+                    col = col.symbol
                 else
                     col = :x
                 end
