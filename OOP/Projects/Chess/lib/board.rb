@@ -75,7 +75,7 @@ class Board
     #Testing rook capability
 
     def test_rook
-        @rows[1][0] = Rook.new(:black, self, [1,0])
+        @rows[4][1] = Knight.new(:black, self, [4,1])
     end
 
     # Add the below to a display class
