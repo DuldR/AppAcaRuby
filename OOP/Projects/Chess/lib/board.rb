@@ -53,17 +53,19 @@ class Board
         @rows = Array.new(8) { Array.new(8, @null) }
 
         fill_back_row
-        test_pawn
-        test_rook
+        fill_pawns
+ 
     end
 
     def fill_back_row
+        set_pieces = [Rook, Knight, Bishop, Queen, King, Bishop, Knight, Rook]
+
         @rows = @rows.map.with_index do |row,idx|
             row.map.with_index do |col, cdx|
-                if idx == 0 || idx == 1
-                    col = Piece.new(:black, self, [idx, cdx])
-                elsif idx == 6 || idx == 7
-                    col = Piece.new(:white, self, [idx, cdx])
+                if idx == 0
+                    col = set_pieces[cdx].new(:black, self, [idx, cdx])
+                elsif idx == 7
+                    col = set_pieces[cdx].new(:white, self, [idx, cdx])
                 else
                     col
                 end
@@ -72,19 +74,21 @@ class Board
 
     end
 
-
-    #Testing rook capability
-
-    def test_pawn
-        @rows[5][1] = Pawn.new(:black, self, [5,1])
-        @rows[5][3] = Pawn.new(:black, self, [5,3])
+    def fill_pawns
+        @rows = @rows.map.with_index do |row,idx|
+            row.map.with_index do |col, cdx|
+                if idx == 6
+                    col = Pawn.new(:white, self, [idx, cdx])
+                elsif idx == 1
+                    col = Pawn.new(:white, self, [idx, cdx])
+                else
+                    col
+                end
+            end
+        end
     end
 
-    def test_rook
-        @rows[6][0] = Pawn.new(:white, self, [6,0])
-        @rows[6][2] = Pawn.new(:white, self, [6,2])
-        @rows[6][4] = Pawn.new(:white, self, [6,4])
-    end
+
 
     # Add the below to a display class
     def build_grid

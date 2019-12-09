@@ -2,16 +2,15 @@ require_relative "piece"
 
 
 class Pawn < Piece
+    
+    attr_reader :symbol
 
     def symbol
         '♙'
     end
 
     def move_dirs
-        [[1,-1],
-        [1, 1],
-        [-1, 1],
-        [-1, -1]]
+        [[1,-1], [1, 1], [-1, 1], [-1, -1]]
     end
 
     def moves
@@ -44,14 +43,16 @@ class Pawn < Piece
             new_move = [pos[0] - 1, pos[1]]
             if board.empty?(new_move)
                 return new_move
+            else
+                return []
             end
         elsif forward_dir == 1
             new_move = [pos[0] + 1, pos[1]]
             if board.empty?(new_move)
                 return new_move
+            else
+                return []
             end
-        else
-            return []
         end
 
     end
@@ -60,7 +61,7 @@ class Pawn < Piece
         moves = []
 
         if forward_dir == -1
-            move_dirs[2,3].each do |chk|
+            move_dirs[2..3].each do |chk|
                 cur_x, cur_y = pos
                 dx, dy = chk
                 cur_x, cur_y = cur_x + dx, cur_y + dy
@@ -73,7 +74,7 @@ class Pawn < Piece
                 end
             end
         elsif forward_dir == 1
-            move_dirs[0,1].each do |chk|
+            move_dirs[0..1].each do |chk|
                 cur_x, cur_y = pos
                 dx, dy = chk
                 cur_x, cur_y = cur_x + dx, cur_y + dy
@@ -92,41 +93,6 @@ class Pawn < Piece
 
 
     end
-
-    # def side_attacks
-    #     cur_x, cur_y = pos
-    #     moves = []
-
-
-    #     if color == :white
-    #         move_dirs[2,3].each do |chk|
-    #             dx, dy = chk
-    #             cur_x, cur_y = cur_x + dx, cur_y + dy
-    #             pos = cur_x, cur_y
-                
-    #             break unless board.valid_pos(pos)
-
-    #             if board[pos].color != color
-    #                 moves << pos
-    #             end
-    #         end
-    #     elsif color == :black
-    #         move_dirs[4,5].each do |chk|
-    #             dx, dy = chk
-    #             cur_x, cur_y = cur_x + dx, cur_y + dy
-    #             pos = cur_x, cur_y
-
-    #             break unless board.valid_pos(pos)
-
-    #             if board[pos].color != color
-    #                 moves << pos
-    #             end
-    #         end
-    #     end
-
-
-    #     moves
-    # end
 
 end
 
