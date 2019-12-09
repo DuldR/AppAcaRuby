@@ -76,12 +76,14 @@ class Board
     #Testing rook capability
 
     def test_pawn
-        @rows[5][1] = Pawn.new(:white, self, [5,1])
+        @rows[5][1] = Pawn.new(:black, self, [5,1])
+        @rows[5][3] = Pawn.new(:black, self, [5,3])
     end
 
     def test_rook
-        @rows[6][0] = Pawn.new(:black, self, [6,0])
-        @rows[6][2] = Pawn.new(:black, self, [6,2])
+        @rows[6][0] = Pawn.new(:white, self, [6,0])
+        @rows[6][2] = Pawn.new(:white, self, [6,2])
+        @rows[6][4] = Pawn.new(:white, self, [6,4])
     end
 
     # Add the below to a display class
