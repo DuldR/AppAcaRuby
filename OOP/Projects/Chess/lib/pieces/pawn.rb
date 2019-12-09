@@ -8,9 +8,7 @@ class Pawn < Piece
     end
 
     def move_dirs
-        [[1,0],
-        [-1,0],
-        [1,-1],
+        [[1,-1],
         [1, 1],
         [-1, 1],
         [-1, -1]]
@@ -47,12 +45,51 @@ class Pawn < Piece
             if board.empty?(new_move)
                 return new_move
             end
-        else
+        elsif forward_dir == 1
             new_move = [pos[0] + 1, pos[1]]
             if board.empty?(new_move)
                 return new_move
             end
+        else
+            return []
         end
+
+    end
+
+    def side_attacks
+        moves = []
+
+        if forward_dir == -1
+            move_dirs[2,3].each do |chk|
+                cur_x, cur_y = pos
+                dx, dy = chk
+                cur_x, cur_y = cur_x + dx, cur_y + dy
+                new_move = [cur_x, cur_y]
+
+                next unless board.valid_pos?(new_move)
+
+                if board[new_move].color != color && board[new_move].color != :none
+                    moves << new_move
+                end
+            end
+        elsif forward_dir == 1
+            move_dirs[0,1].each do |chk|
+                cur_x, cur_y = pos
+                dx, dy = chk
+                cur_x, cur_y = cur_x + dx, cur_y + dy
+                new_move = [cur_x, cur_y]
+
+                next unless board.valid_pos?(new_move)
+
+                if board[new_move].color != color && board[new_move].color != :none
+                    moves << new_move
+                end
+            end
+        end
+
+        moves
+
+
 
     end
 
@@ -93,4 +130,3 @@ class Pawn < Piece
 
 end
 
-d = Pawn.new(:black, Board.new, [5,0])
