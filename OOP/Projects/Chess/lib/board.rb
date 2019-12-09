@@ -1,4 +1,4 @@
-require_relative "pieces/piece"
+require_relative "pieces"
 
 class Board
 
@@ -53,7 +53,7 @@ class Board
         @rows = Array.new(8) { Array.new(8, @null) }
 
         fill_back_row
-        test_rook
+        test_pawn
     end
 
     def fill_back_row
@@ -74,8 +74,8 @@ class Board
 
     #Testing rook capability
 
-    def test_rook
-        @rows[4][1] = Knight.new(:black, self, [4,1])
+    def test_pawn
+        @rows[6][0] = Pawn.new(:white, self, [6,0])
     end
 
     # Add the below to a display class
