@@ -12,9 +12,9 @@ class Display
         @board.rows.map.with_index do |row, rdx|
             row.map.with_index do |col, cdx|
                 if (rdx.even? && cdx.even?) || (rdx.odd? && cdx.odd?) 
-                    col = "  ".colorize(:background => :black) + col.symbol.colorize(:background => :black)
+                    col = (" " + col.symbol + " ").colorize(:background => :black)
                 elsif (rdx.even? && cdx.odd?) || (rdx.odd? && cdx.even?)
-                    col = "  "(:background => :white) + col.symbol.colorize(:background => :white)
+                    col = (" "+ col.symbol + " ").colorize(:background => :white)
                 end 
             end
         end
