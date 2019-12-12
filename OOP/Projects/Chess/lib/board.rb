@@ -90,22 +90,22 @@ class Board
 
 
 
-    # Add the below to a display class
-    def build_grid
-        @rows.map.with_index do |row, idx|
-            row.map do |col|
-                if col.nil? == false
-                    col = col.symbol
-                else
-                    col = :x
-                end
-            end
-        end
-    end
+    # # Add the below to a display class
+    # def build_grid
+    #     @rows.map.with_index do |row, idx|
+    #         row.map do |col|
+    #             if col.nil? == false
+    #                 col = col.symbol
+    #             else
+    #                 col = :x
+    #             end
+    #         end
+    #     end
+    # end
 
-    def render
-        build_grid.each { |row| puts row.join }
-    end
+    # def render
+    #     build_grid.each { |row| puts row.join }
+    # end
 
 end
 

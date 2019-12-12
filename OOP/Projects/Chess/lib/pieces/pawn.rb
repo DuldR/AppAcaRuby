@@ -6,7 +6,7 @@ class Pawn < Piece
     attr_reader :symbol
 
     def symbol
-        '♙'
+        '♟'
     end
 
     def move_dirs
