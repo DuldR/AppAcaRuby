@@ -12,13 +12,15 @@ class Display
         @board.rows.map.with_index do |row, rdx|
             row.map.with_index do |col, cdx|
                 if (rdx.even? && cdx.even?) || (rdx.odd? && cdx.odd?) 
-                    col = (" " + col.symbol + " ").colorize(:background => :black)
+                    col = (col.to_s)
                 elsif (rdx.even? && cdx.odd?) || (rdx.odd? && cdx.even?)
-                    col = (" "+ col.symbol + " ").colorize(:background => :white)
+                    col = (col.to_s).colorize(:background => :red)
                 end 
             end
         end
     end
+
+
 
     def render
         build_grid.each { |row| puts row.join }

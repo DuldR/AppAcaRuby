@@ -14,4 +14,12 @@ class Piece
         false
     end
 
+    def to_s
+        " #{symbol} "
+    end
+
+    def symbol
+        raise NotImplementedError
+    end
+
 end

@@ -80,7 +80,7 @@ class Board
                 if idx == 6
                     col = Pawn.new(:white, self, [idx, cdx])
                 elsif idx == 1
-                    col = Pawn.new(:white, self, [idx, cdx])
+                    col = Pawn.new(:black, self, [idx, cdx])
                 else
                     col
                 end

@@ -13,6 +13,7 @@
 
     def hello
         p @name
+        puts "JESUS"
         greet
     end
 end

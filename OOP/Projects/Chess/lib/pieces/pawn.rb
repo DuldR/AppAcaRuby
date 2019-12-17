@@ -6,7 +6,7 @@ class Pawn < Piece
     attr_reader :symbol
 
     def symbol
-        '♟'
+        "♟".colorize(:color => color)
     end
 
     def move_dirs
