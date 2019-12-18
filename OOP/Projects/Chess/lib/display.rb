@@ -1,4 +1,5 @@
 require "colorize"
+require_relative "cursor.rb"
 
 class Display
 
@@ -12,7 +13,7 @@ class Display
         @board.rows.map.with_index do |row, rdx|
             row.map.with_index do |col, cdx|
                 if (rdx.even? && cdx.even?) || (rdx.odd? && cdx.odd?) 
-                    col = (col.to_s)
+                    col = (col.to_s).colorize(:background => :blue)
                 elsif (rdx.even? && cdx.odd?) || (rdx.odd? && cdx.even?)
                     col = (col.to_s).colorize(:background => :red)
                 end 
@@ -23,6 +24,7 @@ class Display
 
 
     def render
+        system("clear")
         build_grid.each { |row| puts row.join }
     end
 end
