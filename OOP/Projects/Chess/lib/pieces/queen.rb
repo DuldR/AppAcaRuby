@@ -10,7 +10,7 @@ class Queen < Piece
     end
 
     def move_dirs
-        diag
+        hor_and_ver + diag
     end
 
 end
