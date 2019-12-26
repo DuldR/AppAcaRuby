@@ -35,14 +35,32 @@ class Board
 
     end
 
-    def move_piece(start_pos, end_pos)
+    # Check and Checkmate Methods
 
-        if self[start_pos].nil? == true || self[end_pos].nil? == false
-            raise "Invalid starting position or ending position"
+    def find_king(color)
+
+        self.rows.each.with_index do |row, rdx|
+            row.each.with_index do |col, cdx|
+                if col.is_a?(King) && col.color == color
+                    return col.pos
+                else
+                    next
+                end
+            end
         end
 
+
+    end
+
+
+
+
+    # Logic Methods
+
+    def move_piece(start_pos, end_pos)
+
         self[end_pos] = self[start_pos]
-        self[start_pos] = nil
+        self[start_pos] = @null
 
     end
 
@@ -56,6 +74,8 @@ class Board
         fill_pawns
  
     end
+
+    # THese two methods can be combined
 
     def fill_back_row
         set_pieces = [Rook, Knight, Bishop, Queen, King, Bishop, Knight, Rook]
@@ -90,26 +110,4 @@ class Board
 
 
 
-    # # Add the below to a display class
-    # def build_grid
-    #     @rows.map.with_index do |row, idx|
-    #         row.map do |col|
-    #             if col.nil? == false
-    #                 col = col.symbol
-    #             else
-    #                 col = :x
-    #             end
-    #         end
-    #     end
-    # end
-
-    # def render
-    #     build_grid.each { |row| puts row.join }
-    # end
-
 end
-
-
-
-
-b = Board.new
