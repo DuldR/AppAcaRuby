@@ -26,7 +26,7 @@ class Board
     def valid_pos?(pos)
         x, y = pos
 
-        if x < 0 || x > 8 || y < 0 || y > 8
+        if x < 0 || x > 7 || y < 0 || y > 7
             return false
         end
 
@@ -57,7 +57,18 @@ class Board
 
     # Logic Methods
 
+    def check_moves(start_pos)
+
+        print self[start_pos].moves
+
+    end
+
     def move_piece(start_pos, end_pos)
+
+        if self[start_pos] == @null
+            raise "This is not a valid starting position"
+        end
+
 
         self[end_pos] = self[start_pos]
         self[start_pos] = @null
