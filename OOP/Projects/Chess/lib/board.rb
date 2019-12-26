@@ -57,8 +57,6 @@ class Board
                 end
             end
         end
-
-
     end
 
 
@@ -68,11 +66,15 @@ class Board
             row.each do |col|
                 if col.color != color && col.moves.include?(target_pos)
                     puts "You're in check fam."
+                    return true
                 else
                     next
                 end
             end
         end
+
+        puts "You're not in check."
+        return false
 
     end
 
@@ -80,6 +82,18 @@ class Board
 
         king_pos = find_king(color)
         check_moves(king_pos, color)
+
+    end
+
+    def checkmate?(color)
+        
+        king_pos = find_king(color)
+
+        if king_pos.valid_moves.empty?
+            return true
+        else
+            return false
+        end
 
     end
 
@@ -102,19 +116,6 @@ class Board
         end
 
     end
-
-    # Solution method
-
-    # def move_piece(start_pos, end_pos)
-    #     piece = self[start_pos]
-    #     raise 'piece cannot move like that' unless piece.moves.include?(end_pos)
-
-    #     self[end_pos] = piece
-    #     self[start_pos] = @null
-    #     piece.pos = end_pos
-
-    #     nil
-    # end
 
     # Setting up board.
 
