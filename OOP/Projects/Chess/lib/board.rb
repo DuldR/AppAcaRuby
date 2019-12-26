@@ -38,7 +38,7 @@ class Board
     # Check and Checkmate Methods
 
     def find_king(color)
-
+        # There's a better way to write this
         self.rows.each.with_index do |row, rdx|
             row.each.with_index do |col, cdx|
                 if col.is_a?(King) && col.color == color
@@ -53,15 +53,28 @@ class Board
     end
 
 
+    def check_moves(target_pos, color)
 
-
-    # Logic Methods
-
-    def check_moves(start_pos)
-
-        print self[start_pos].moves
+        self.rows.each do |row|
+            row.each do |col|
+                if col.color != color && col.moves.include?(target_pos)
+                    puts "You're in check"
+                else
+                    next
+                end
+            end
+        end
 
     end
+
+    def in_check?(color)
+
+        king_pos = find_king(color)
+        check_moves(king_pos, color)
+
+    end
+
+    # Logic Methods
 
     def move_piece(start_pos, end_pos)
 
@@ -69,9 +82,12 @@ class Board
             raise "This is not a valid starting position"
         end
 
-
-        self[end_pos] = self[start_pos]
-        self[start_pos] = @null
+        if self[start_pos].moves.include?(end_pos)
+            self[end_pos] = self[start_pos]
+            self[start_pos] = @null
+        else
+            raise "That's not a valid move"
+        end
 
     end
 

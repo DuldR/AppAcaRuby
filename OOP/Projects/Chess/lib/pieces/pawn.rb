@@ -14,7 +14,7 @@ class Pawn < Piece
     end
 
     def moves
-        [forward_steps]
+        forward_steps
     end
     
 
@@ -38,21 +38,26 @@ class Pawn < Piece
     end
 
     def forward_steps
+        moves = []
 
         if forward_dir == -1
-            new_move = [pos[0] - 1, pos[1]]
-            if board.empty?(new_move)
-                return new_move
-            else
-                return []
-            end
+            new_move = [[pos[0] - 1, pos[1]], [pos[0] - 2, pos[1]]]
+                new_move.each do |chk|
+                    if board.empty?(chk)
+                        moves << chk
+                    else
+                        return []
+                    end
+                end
         elsif forward_dir == 1
-            new_move = [pos[0] + 1, pos[1]]
-            if board.empty?(new_move)
-                return new_move
-            else
-                return []
-            end
+            new_move = [[pos[0] + 1, pos[1]], [pos[0] + 2, pos[1]]]
+                new_move.each do |chk|
+                    if board.empty?(chk)
+                        moves << chk
+                    else
+                        return []
+                    end
+                end
         end
 
     end
