@@ -14,7 +14,7 @@ class Pawn < Piece
     end
 
     def moves
-        forward_steps
+        [forward_steps]
     end
     
 
