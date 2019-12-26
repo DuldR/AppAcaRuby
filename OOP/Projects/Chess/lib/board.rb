@@ -66,16 +66,11 @@ class Board
 
         self.rows.each do |row|
             row.each do |col|
-                
-                if col.color != color
-                    p col.symbol
-                    p col.moves
+                if col.color != color && col.moves.include?(target_pos)
+                    puts "You're in check fam."
+                else
+                    next
                 end
-                # if col.color != color && col.moves.include?(target_pos)
-                #     puts col.moves
-                # else
-                #     next
-                # end
             end
         end
 
