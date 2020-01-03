@@ -1,103 +1,47 @@
-require_relative "piece"
-
+require_relative 'piece'
 
 class Pawn < Piece
-    
-    attr_reader :symbol
 
-    def symbol
-        "♟".colorize(:color => color)
+  def symbol
+    '♟'.colorize(:color => color)
+  end
+
+  def moves
+    forward_steps + side_attacks
+  end
+
+  private
+
+  def at_start_row?
+    pos[0] == (color == :white) ? 6 : 1
+  end
+
+  def forward_dir
+    color == :white ? -1 : 1
+  end
+
+  def forward_steps
+    i, j = pos
+    one_step = [i + forward_dir, j]
+    return [] unless board.valid_pos?(one_step) && board.empty?(one_step)
+
+    steps = [one_step]
+    two_step = [i + 2 * forward_dir, j]
+    steps << two_step if at_start_row? && board.empty?(two_step)
+    steps
+  end
+
+  def side_attacks
+    i, j = pos
+
+    side_moves = [[i + forward_dir, j - 1], [i + forward_dir, j + 1]]
+
+    side_moves.select do |new_pos|
+      next false unless board.valid_pos?(new_pos)
+      next false if board.empty?(new_pos)
+
+      threatened_piece = board[new_pos]
+      threatened_piece && threatened_piece.color != color
     end
-
-    def move_dirs
-        [[1,-1], [1, 1], [-1, 1], [-1, -1]]
-    end
-
-    def moves
-        forward_steps
-    end
-    
-
-    def forward_dir
-        if color == :white
-            return -1
-        else
-            return 1
-        end
-    end
-
-
-    def at_start_row?
-        if color == :white && pos[0] == 6
-            return true
-        elsif color == :black && pos[0] == 1
-            return true
-        else
-            return false
-        end
-    end
-
-    def forward_steps
-        moves = []
-
-        if forward_dir == -1
-            new_move = [[pos[0] - 1, pos[1]], [pos[0] - 2, pos[1]]]
-                new_move.each do |chk|
-                    if board.empty?(chk)
-                        moves << chk
-                    else
-                        return []
-                    end
-                end
-        elsif forward_dir == 1
-            new_move = [[pos[0] + 1, pos[1]], [pos[0] + 2, pos[1]]]
-                new_move.each do |chk|
-                    if board.empty?(chk)
-                        moves << chk
-                    else
-                        return []
-                    end
-                end
-        end
-
-    end
-
-    def side_attacks
-        moves = []
-
-        if forward_dir == -1
-            move_dirs[2..3].each do |chk|
-                cur_x, cur_y = pos
-                dx, dy = chk
-                cur_x, cur_y = cur_x + dx, cur_y + dy
-                new_move = [cur_x, cur_y]
-
-                next unless board.valid_pos?(new_move)
-
-                if board[new_move].color != color && board[new_move].color != :none
-                    moves << new_move
-                end
-            end
-        elsif forward_dir == 1
-            move_dirs[0..1].each do |chk|
-                cur_x, cur_y = pos
-                dx, dy = chk
-                cur_x, cur_y = cur_x + dx, cur_y + dy
-                new_move = [cur_x, cur_y]
-
-                next unless board.valid_pos?(new_move)
-
-                if board[new_move].color != color && board[new_move].color != :none
-                    moves << new_move
-                end
-            end
-        end
-
-        moves
-
-
-
-    end
-
+  end
 end
-

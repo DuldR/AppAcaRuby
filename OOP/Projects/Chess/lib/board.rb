@@ -95,20 +95,16 @@ class Board
     end
 
     def checkmate?(color)
-        
-        king_pos = find_king(color)
+        return false unless in_check?(color)
 
-        if king_pos.valid_moves.empty?
-            return true
-        else
-            return false
+        pieces.select { |p| p.color == color }.all? do |piece|
+        piece.valid_moves.empty?
         end
-
     end
 
     # Logic Methods
 
-    def move_piece(start_pos, end_pos)
+    def move_piece(turn_color, start_pos, end_pos)
 
         piece = self[start_pos]
 
@@ -124,6 +120,18 @@ class Board
             raise "That's not a valid move"
         end
 
+    end
+
+    # move without performing checks
+    def move_piece!(start_pos, end_pos)
+        piece = self[start_pos]
+        raise 'piece cannot move like that' unless piece.moves.include?(end_pos)
+
+        self[end_pos] = piece
+        self[start_pos] = @null
+        piece.pos = end_pos
+
+        nil
     end
 
     # Setting up board.
