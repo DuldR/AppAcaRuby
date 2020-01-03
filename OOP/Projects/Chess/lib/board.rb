@@ -2,7 +2,7 @@ require_relative "pieces"
 
 class Board
 
-    attr_reader :rows
+    attr_accessor :rows
 
     def initialize
         @null = NullPiece.instance
@@ -33,6 +33,15 @@ class Board
 
         return true
 
+    end
+
+    def dup
+        new_dup = self.class.new
+        duped_rows = rows.map(&:dup)
+        new_dup.rows = duped_rows
+
+        return new_dup
+        
     end
 
     # Check and Checkmate Methods
