@@ -1,0 +1,34 @@
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: green;
+}
+
+h1 {
+    font-size: 38px;
+}
+
+h2 {
+    font-size: 32px;
+}
+
+/* This selector selects ALL anchor tag children of ALL list elements that
+are children of an Unordered List element */
+ul li a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* This selector selects all image elements that are children (1 level deep)
+of a header element */
+header > img {
+    width: 100px;
+}
+
+.ingredient-list {
+    list-style: square inside
+}
+
+.instructions {
+    list-style: disc inside
+}
