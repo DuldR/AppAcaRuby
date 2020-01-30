@@ -1,0 +1,60 @@
+<!-- 
+SELECTORS
+=========
+
+# BAD
+1) !important
+2) inline css
+3) id #cat-one-1
+
+#GOOD
+4) Class '.favorite'
+5) Element '<p>'
+
+    Specificity MATTERS
+    if all equal, last declared rule wins
+-->
+
+<head>
+    <meta charset="utf-8">
+    <title>SYNTAX</title>
+
+    <style>
+
+        p {
+            color: blue;
+        }
+
+        .favorite {
+            color: red;
+        }
+
+        .special {
+            color: green;
+        }
+
+        #cat-one-1 {
+            color:purple;
+        }
+
+        p {
+            color: gray !important;
+        }
+    </style>
+
+
+
+</head>
+
+
+<body>
+
+    <h1>TIME TO GET DUNKED ON</h1>
+
+    <section>
+        <article>
+            <h2 id="cat-one-1" class="favorite special">Weiners</h2>
+            <p style="color: orange;">They own!</p>
+        </article>
+    </section>
+</body>
