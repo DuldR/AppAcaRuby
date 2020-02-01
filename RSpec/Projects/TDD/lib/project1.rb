@@ -15,3 +15,21 @@ def my_uniq(arr)
     returnArr
 
 end
+
+def my_transpose(arr)
+    raise ArgumentError unless arr.is_a?(Array)
+    col = Array.new(arr.length) { Array.new(arr.length, 0) }
+
+    arr.each_with_index do |row, rdx|
+        row.each_with_index do |cl, cdx|
+            col[cdx][rdx] = cl
+        end
+    end
+
+    col
+
+end
+
+def add(arr)
+    return [arr[0] + arr[1]]
+end
