@@ -30,6 +30,30 @@ def my_transpose(arr)
 
 end
 
+def stocks(arr)
+
+    raise ArgumentError unless arr.is_a?(Array)
+    sales = 0
+    returnArr = [0, 0]
+    
+    arr.each_with_index do |price, day|
+        arr.each_with_index do |diff, idx|
+            if day >= idx
+                next
+            else
+                if (price - diff) > sales
+                    sales = price - diff
+                    returnArr[0] = day
+                    returnArr[1] = idx
+                end
+            end
+        end
+    
+    end
+    returnArr
+
+end
+
 def add(arr)
     return [arr[0] + arr[1]]
 end

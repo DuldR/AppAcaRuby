@@ -36,7 +36,24 @@ describe "Part 1:" do
             expect(my_transpose([[1,2,3],[4,5,6],[7,8,9]])[0][2]).to eq(7)
         end
 
-    end        
+    end    
+    
+    describe "stocks" do
+
+        it "raise an error if not an array" do
+            expect {stocks("Hello") }.to raise_error(ArgumentError)
+        end
+
+        it "must give greatest stock differential" do
+            expect(stocks([4,3,2,1])).to eq([0,3])
+        end
+
+        it "cannot sell stock on days before buying" do
+            expect(stocks([1,4,2,3])).to eq([1,2])
+        end
+
+
+    end
 end
 
 #### EXAMPLES
