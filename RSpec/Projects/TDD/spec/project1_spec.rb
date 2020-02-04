@@ -51,9 +51,32 @@ describe "Part 1:" do
         it "cannot sell stock on days before buying" do
             expect(stocks([1,4,2,3])).to eq([1,2])
         end
-
-
+        
     end
+
+    describe Hanoi do
+        subject(:hanoi) { Hanoi.new }
+
+        describe '#initialize' do
+            it 'starts with a empty board and 3 numbers' do
+                expect(hanoi.board).to eq([[1,2,3],[],[]])
+            end
+        end
+
+        describe '#move' do
+
+            before(:each) do
+                allow(:move).to receive(:gets).and_return(3)
+            end
+
+            it 'answer must not be empty or alpha numeric' do
+
+            end
+        
+        end
+    end
+
+
 end
 
 #### EXAMPLES

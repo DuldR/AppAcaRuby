@@ -54,6 +54,27 @@ def stocks(arr)
 
 end
 
-def add(arr)
-    return [arr[0] + arr[1]]
+
+class Hanoi
+
+    attr_reader :board
+
+    def initialize
+        @board = Array.new(3) { Array.new([]) }
+        @board[0] = [1,2,3]
+    end
+
+    def move
+    end
+
+    def user_input
+        ans = 0
+        until ans > 0 && ans <= 3
+            puts "Enter a tower number(1,2 or 3): "
+            ans = gets.to_i
+        end
+
+        ans
+    end
+
 end
