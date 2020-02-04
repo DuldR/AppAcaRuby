@@ -57,6 +57,13 @@ describe "Part 1:" do
     describe Hanoi do
         subject(:hanoi) { Hanoi.new }
 
+        let(:user_input_right) do
+            3
+        end
+        let(:user_input_wrong) do
+            "Hi, i'm Woody. Howdy Howdy Howdy"
+        end
+
         describe '#initialize' do
             it 'starts with a empty board and 3 numbers' do
                 expect(hanoi.board).to eq([[1,2,3],[],[]])
@@ -64,15 +71,10 @@ describe "Part 1:" do
         end
 
         describe '#move' do
-
-            before(:each) do
-                allow(:move).to receive(:gets).and_return(3)
+            it 'checks for user input' do
+                allow(hanoi).to receive(:user_input) { 3 }
+                expect(hanoi.move).to eq(3)
             end
-
-            it 'answer must not be empty or alpha numeric' do
-
-            end
-        
         end
     end
 

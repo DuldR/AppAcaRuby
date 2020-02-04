@@ -65,6 +65,7 @@ class Hanoi
     end
 
     def move
+        user_input
     end
 
     def user_input
