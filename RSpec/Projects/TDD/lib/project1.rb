@@ -65,17 +65,34 @@ class Hanoi
     end
 
     def move
-        user_input
+        user_input_tower
+
+        #Utilize this method to take in user input, check for the disc then call output
+        
     end
 
-    def user_input
+    def user_input_tower
         ans = 0
+   
         until ans > 0 && ans <= 3
             puts "Enter a tower number(1,2 or 3): "
-            ans = gets.to_i
+            chk = gets.to_i
+
+            if @board[chk - 1].empty?
+                puts "That's an empty tower."
+                next
+            else
+                ans = chk
+            end
         end
 
         ans
     end
 
+    def user_output_tower(disc)
+        #Use move to call this method an input disc
+        
+
+    end
+    
 end
