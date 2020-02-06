@@ -66,16 +66,12 @@ class Hanoi
 
     def move
 
-        @board[user_input_tower]
+        ans = user_input_tower
+        p "Here's what's in that tower: #{@board[ans]}"
 
-        # ans = user_input_tower
-        # p ans
-        # p @board[ans]
+        disc = @board[ans].sort
 
-        # ans = user_input_tower
-        # @board[ans]
-        # print "Here's what's in that tower: #{@board[0]} "
-        # puts "Where would you like the smallest disc to go: #{@board[user_output_tower]} "
+        p "Where would you like the smallest disc to go: #{@board[user_output_tower(ans, disc.shift)]} "
     
     end
 
@@ -97,10 +93,24 @@ class Hanoi
         ans - 1
     end
 
-    def user_output_tower(disc)
+    def user_output_tower(initial, disc)
         #Use move to call this method an input disc
-        
+        ans = 0
 
+        until ans != initial && ans > 0 && ans <= 3
+            puts "Enter a tower number(1,2 or 3): "
+            chk = gets.to_i
+
+            if @board[chk - 1].empty?
+                @board[initial].shift
+                @board[chk - 1] << disc
+                ans = chk
+            else
+                puts "That's not an empty tower."
+                next
+            end
+        end
+        
     end
     
 end

@@ -72,7 +72,7 @@ describe "Part 1:" do
 
             it 'shows what is in the given tower' do
                 allow(hanoi).to receive(:user_input_tower).and_return(0)
-                expect(hanoi.move).to eq([1,2,3])
+                expect(hanoi.move).to eq("Here's what's in that tower: " + "[1, 2, 3]")
             end
 
             #Write tests to check for user input being called and outputting
