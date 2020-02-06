@@ -101,7 +101,7 @@ class Hanoi
             puts "Enter a tower number(1,2 or 3): "
             chk = gets.to_i
 
-            if @board[chk - 1].empty?
+            if chk != initial
                 @board[initial].shift
                 @board[chk - 1] << disc
                 ans = chk
