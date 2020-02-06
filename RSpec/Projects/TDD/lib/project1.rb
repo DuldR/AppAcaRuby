@@ -65,10 +65,17 @@ class Hanoi
     end
 
     def move
-        user_input_tower
 
-        #Utilize this method to take in user input, check for the disc then call output
-        
+
+        ans = user_input_tower
+        p ans
+        p @board[ans]
+
+        # ans = user_input_tower
+        # @board[ans]
+        # print "Here's what's in that tower: #{@board[0]} "
+        # puts "Where would you like the smallest disc to go: #{@board[user_output_tower]} "
+    
     end
 
     def user_input_tower
@@ -86,7 +93,7 @@ class Hanoi
             end
         end
 
-        ans
+        ans - 1
     end
 
     def user_output_tower(disc)

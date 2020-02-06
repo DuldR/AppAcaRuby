@@ -57,13 +57,6 @@ describe "Part 1:" do
     describe Hanoi do
         subject(:hanoi) { Hanoi.new }
 
-        let(:user_input_right) do
-            3
-        end
-        let(:user_input_wrong) do
-            "Hi, i'm Woody. Howdy Howdy Howdy"
-        end
-
         describe '#initialize' do
             it 'starts with a empty board and 3 numbers' do
                 expect(hanoi.board).to eq([[1,2,3],[],[]])
@@ -71,11 +64,19 @@ describe "Part 1:" do
         end
 
         describe '#move' do
-            it 'checks for user input' do
-                expect(hanoi).to receive(:user_input_tower)
-                hanoi.move
-                # allow(hanoi).to receive(:user_input_tower) { 3 }
-                # expect(hanoi.move).to eq(3)
+
+            # it 'checks for user input' do
+            #     expect(hanoi).to receive(:user_input_tower)
+            #     hanoi.move
+            #     # allow(hanoi).to receive(:user_input_tower) { 3 }
+            #     # expect(hanoi.move).to eq(3)
+            # end
+
+            it 'shows what is in the given tower' do
+
+                allow(hanoi).to receive(:user_input_tower).and_return(0)
+                expect(hanoi.move).to eq([1,2,3])
+
             end
 
             #Write tests to check for user input being called and outputting
