@@ -75,6 +75,10 @@ describe "Part 1:" do
                 expect(hanoi.move).to eq("Here's what's in that tower: " + "[1, 2, 3]")
             end
 
+            #Write test to ensure disc array passed to output is sorted
+            #Write test to ensure lowest value from disc array is passed into output tower
+            
+
             #Write tests to check for user input being called and outputting
         end
     end
