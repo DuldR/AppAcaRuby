@@ -72,8 +72,10 @@ describe "Part 1:" do
 
         describe '#move' do
             it 'checks for user input' do
-                allow(hanoi).to receive(:user_input_tower) { 3 }
-                expect(hanoi.move).to eq(3)
+                expect(hanoi).to receive(:user_input_tower)
+                hanoi.move
+                # allow(hanoi).to receive(:user_input_tower) { 3 }
+                # expect(hanoi.move).to eq(3)
             end
 
             #Write tests to check for user input being called and outputting
