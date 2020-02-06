@@ -66,10 +66,11 @@ class Hanoi
 
     def move
 
+        @board[user_input_tower]
 
-        ans = user_input_tower
-        p ans
-        p @board[ans]
+        # ans = user_input_tower
+        # p ans
+        # p @board[ans]
 
         # ans = user_input_tower
         # @board[ans]
