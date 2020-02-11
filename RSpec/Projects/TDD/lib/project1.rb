@@ -71,7 +71,9 @@ class Hanoi
 
         disc = @board[ans].sort
 
-        p "Where would you like the smallest disc to go: #{@board[user_output_tower(ans, disc.shift)]} "
+        user_output_tower(ans, disc.shift)
+
+        # p "Where would you like the smallest disc to go: #{@board[user_output_tower(ans, disc.shift)]} "
     
     end
 
@@ -104,7 +106,7 @@ class Hanoi
             if chk != initial
                 @board[initial].shift
                 @board[chk - 1] << disc
-                ans = chk
+                ans = 1
             else
                 puts "That's not an empty tower."
                 next
