@@ -64,21 +64,31 @@ class Hanoi
         @board[0] = [1,2,3]
     end
 
+    def won?
+        if @board[1] == [1,2,3] || @board[2] == [1,2,3]
+            p "You win!"
+            return true
+        else
+            return false
+        end
+    end
+
     def move
-        p "-------"
-        p self.board
-        p "-------"
 
-        ans = user_input_tower
-        puts "Here's what's in that tower: #{@board[ans]}"
+        until won?
+            p "-------"
+            p self.board
+            p "-------"
 
-    
-        disc = @board[ans]
+            ans = user_input_tower
+            puts "Here's what's in that tower: #{@board[ans]}"
+
+        
+            disc = @board[ans]
 
 
-        user_output_tower(ans, disc.shift)
-
-        # p "Where would you like the smallest disc to go: #{@board[user_output_tower(ans, disc.shift)]} "
+            user_output_tower(ans, disc.shift)
+        end
     
     end
 
@@ -109,8 +119,8 @@ class Hanoi
             chk = gets.to_i
 
             if chk != (initial - 1)
-                @board[initial].shift
-                @board[chk - 1] << disc
+                @board[initial]
+                @board[chk - 1].unshift(disc)
                 ans = true
             else
                 puts "That's your initial tower."
