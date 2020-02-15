@@ -22,6 +22,10 @@ class Card
 
     end
 
+    def val?
+        "#{@face} of #{@suit}s"
+    end
+
 
 
 end

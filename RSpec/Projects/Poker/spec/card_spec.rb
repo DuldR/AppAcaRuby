@@ -20,5 +20,11 @@ describe Card do
 
     end
 
+    describe 'val?' do
+        it 'must return the face and suit' do
+            expect(card.val?).to eq("4 of Spades")
+        end
+    end
+
 
 end
