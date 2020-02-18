@@ -25,4 +25,8 @@ class Deck
         end
     end
 
+    def shuffle
+
+    end
+
 end
