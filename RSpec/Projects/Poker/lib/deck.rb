@@ -9,7 +9,15 @@ class Deck
     end
 
     def create_set
-        @set = ["Card"]
+        until @set.length == 52
+            @set << Card.new("Ace", "Spade")
+        end
+
+        @set
+    end
+
+    def format_deck
+
     end
 
 end

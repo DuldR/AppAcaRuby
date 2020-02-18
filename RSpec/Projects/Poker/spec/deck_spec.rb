@@ -12,6 +12,8 @@ describe Deck do
     end
 
     describe '#create_set' do
+        
+
         it 'should not be an empty array' do
             expect(deck.create_set).not_to be_empty
         end
@@ -20,13 +22,16 @@ describe Deck do
             expect(deck.create_set.length).to eq(52)
         end
 
-        it 'should include card objects' do
-            allow(card).to receive(:initialize).and_return("Card")
-            expect(deck.create_set).to include("Card")
-        end
-
-
     end
+
+    describe '#format_deck' do
+
+
+        it 'should include all of the cards in a deck' do
+            expect(deck.format_deck.include?("Ace of Spades")
+        end
+    end
+
 
 
 end
