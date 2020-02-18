@@ -10,6 +10,8 @@ class Deck
     end
 
     def create_set
+        # Loop through cards for this. Maybe set a card module?
+        
         until @set.length == 52
             @set << Card.new("Ace", "Spade")
         end
