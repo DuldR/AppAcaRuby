@@ -37,6 +37,11 @@ describe Deck do
             expect(deck.deck).to include("Jack of Clubs")
         end
 
+        it 'should not include duplicates' do
+            expect(deck.deck.count("2 of Spades")).to eq(1)
+            expect(deck.deck.count("Jack of Hearts")).to eq(1)
+        end
+
     end
 
 

@@ -1,6 +1,4 @@
-require "card"
-
-class Deck
+class Deck < Card
 
     attr_reader :set, :deck
 
@@ -12,8 +10,19 @@ class Deck
     def create_set
         # Loop through cards for this. Maybe set a card module?
         
-        until @set.length == 52
-            @set << Card.new("Ace", "Spade")
+        # Numbers
+        NUMBERS.each do |num|
+            SUITS.each do |suit|
+                @set << Card.new(num, suit)
+            end
+        end
+
+        # Faces
+
+        FACE_CARDS.each do |face|
+            SUITS.each do |suit|
+                @set << Card.new(face, suit)
+            end
         end
 
         @set
@@ -26,7 +35,7 @@ class Deck
     end
 
     def shuffle
-
+        @deck = @deck.shuffle
     end
 
 end
