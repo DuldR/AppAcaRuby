@@ -1,13 +1,13 @@
-require "deck"
+require_relative "deck"
 
 class Hand_Poker
     attr_reader :deck
     attr_accessor :hand
 
-    def initialize(deck)
+    def initialize(dealt)
 
-        @hand = []
-        @deck = deck
+        @hand = dealt
+
     end
 
 
