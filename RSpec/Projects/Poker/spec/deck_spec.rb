@@ -44,6 +44,23 @@ describe Deck do
 
     end
 
+    describe '#deal' do
+        before(:each) do
+            deck.ready?
+        end
+
+        it 'must return the amount requested' do 
+            expect(deck.deal(2).length).to eq(2)
+        end
+
+        it 'must reduce the deck by the amount requested' do
+            deck.deal(2)
+            expect(deck.deck.length).to eq(50)
+        end
+        
+
+    end
+
 
 
 end

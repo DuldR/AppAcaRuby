@@ -38,4 +38,19 @@ class Deck < Card
         @deck = @deck.shuffle
     end
 
+    def deal(amount)
+        dealt = []
+
+        amount.times { dealt << @deck.pop }
+
+        dealt
+
+    end
+
+    def ready?
+        self.create_set
+        self.format_deck
+        self.shuffle
+    end
+
 end
