@@ -35,13 +35,15 @@ class Deck < Card
     end
 
     def shuffle
-        @deck = @deck.shuffle
+        @set.shuffle!
     end
+
+
 
     def deal(amount)
         dealt = []
 
-        amount.times { dealt << @deck.pop }
+        amount.times { dealt << @set.pop }
 
         dealt
 
@@ -49,8 +51,14 @@ class Deck < Card
 
     def ready?
         self.create_set
-        self.format_deck
         self.shuffle
+        self.format_deck
+    end
+
+    def render
+        self.format_deck
+        #Write method to show deck
+        self.show_deck
     end
 
 end

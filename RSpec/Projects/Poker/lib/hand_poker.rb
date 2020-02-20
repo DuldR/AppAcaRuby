@@ -10,5 +10,8 @@ class Hand_Poker
 
     end
 
+    def hand_rank
+        
+    end
 
 end
