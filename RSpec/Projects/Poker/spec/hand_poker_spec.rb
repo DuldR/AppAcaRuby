@@ -11,13 +11,15 @@ describe Hand_Poker do
     let(:card6) { double(:face => "Jack", :suit => "Club") }
 
     #Hand Types
-    let(:dealt) { [card1,card2,card3,card4,card5] }
-    let(:two_of_a_kind) { [card1,card6,card6,card2s,card5] }
-    let(:three_of_a_kind) { [card1,card1,card1,card4,card4] }
+    let(:two_of_a_kind) { [card1,card2,card3,card4,card6] }
+    let(:three_of_a_kind) { [card6,card6,card6,card4,card5] }
     let(:four_of_a_kind) { [card1,card1,card1,card1,card4] }
+    let(:house) { [card1,card1,card1,card2,card2] }
 
-    subject(:test_hand) { Hand_Poker.new(four_of_a_kind) }
-    subject(:test_hand_3) { Hand_Poker.new(dealt) }
+    subject(:test_hand) { Hand_Poker.new(two_of_a_kind) }
+    subject(:test_hand_3) { Hand_Poker.new(three_of_a_kind) }
+    subject(:test_hand_4) { Hand_Poker.new(four_of_a_kind) }
+    subject(:test_hand_house) { Hand_Poker.new(house) }
 
     describe '#initialize' do
         it 'initial hand must be an array' do
@@ -38,8 +40,10 @@ describe Hand_Poker do
     describe '#hand_rank' do
 
         it 'checks for hand combinations' do
-            # subject(:test_hand_3) { Hand_Poker.new(three_of_a_kind) }
+            expect(test_hand.hand_rank).to eq("2 of a Kind!")
             expect(test_hand_3.hand_rank).to eq("3 of a Kind!")
+            expect(test_hand_4.hand_rank).to eq("4 of a Kind!")
+            expect(test_hand_house.hand_rank).to eq("Full House!")
         end
     end
 
