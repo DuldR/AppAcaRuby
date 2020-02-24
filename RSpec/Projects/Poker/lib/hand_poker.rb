@@ -19,6 +19,8 @@ class Hand_Poker
         pairs = []
         score = []
 
+        
+        #Getting face value from card obj
         @hand.each do |card|
             if card.face.to_i == 0
                 next
@@ -29,6 +31,21 @@ class Hand_Poker
             pairs.sort
         end
 
+        #Going through uniq pairs and finding amount
+        pairs.uniq.each do |pair|
+            if pair == 0
+                next
+            else
+                score << pairs.count(pair)
+            end
+        end
+
+        return score.max
+
+
+        # if pairs.uniq.length is == 2
+        # THAT MUST be a full house. 
+        # BUt y
 
 
         # if pairs.uniq.length == 2
