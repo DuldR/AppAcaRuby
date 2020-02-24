@@ -40,7 +40,13 @@ class Hand_Poker
             end
         end
 
-        return score.max
+
+        #Logic for fullhouse"
+        if score == [3,2] || score == [2,3]
+            return [5]
+        else
+            return score.max
+        end
 
 
         # if pairs.uniq.length is == 2

@@ -39,7 +39,6 @@ class Deck < Card
     end
 
 
-
     def deal(amount)
         dealt = []
 
@@ -48,6 +47,8 @@ class Deck < Card
         dealt
 
     end
+
+    #Private
 
     def ready?
         self.create_set
@@ -60,5 +61,19 @@ class Deck < Card
         #Write method to show deck
         self.show_deck
     end
+
+    #Test Hand Methods
+
+    def full_house
+        2.times { @set << Card.new(2, "Heart") }
+        3.times { @set << Card.new(3, "Spade") }
+    end
+
+    def four
+        1.times { @set << Card.new(3, "Heart") }
+        4.times { @set << Card.new(2, "Heart") }
+    end
+
+
 
 end
