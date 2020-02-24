@@ -40,42 +40,12 @@ class Hand_Poker
             end
         end
 
-
         #Logic for fullhouse"
         if score == [3,2] || score == [2,3]
             return [5]
         else
             return score.max
         end
-
-
-        # if pairs.uniq.length is == 2
-        # THAT MUST be a full house. 
-        # BUt y
-
-
-        # if pairs.uniq.length == 2
-        #     pairs.uniq.each do |i|
-        #         score << pairs.count(i)
-        #     end
-
-        #     if score.include?(3) && score.include?(2)
-        #         return "Full house!"
-        #     end
-
-
-        # pairs.each do |pair|
-
-        #     if pairs.count(pair) == 4
-        #         return 4
-        #     elsif pairs.count(pair) == 3
-        #         return 3
-        #     elsif pairs.count(pair) == 2
-        #         return 2
-        #     else
-        #         next
-        #     end
-        # end 
 
     end
 

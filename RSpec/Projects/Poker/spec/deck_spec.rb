@@ -55,7 +55,7 @@ describe Deck do
 
         it 'must reduce the deck by the amount requested' do
             deck.deal(2)
-            expect(deck.deck.length).to eq(50)
+            expect(deck.set.length).to eq(50)
         end
         
 
