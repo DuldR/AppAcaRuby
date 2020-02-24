@@ -11,7 +11,15 @@ class Hand_Poker
     end
 
     def hand_rank
-
+        if hand_pairs == 2
+            return "2 of a Kind!"
+        elsif hand_pairs == 3
+            return "3 of a Kind!"
+        elsif hand_pairs == 4
+            return "4 of a Kind!"
+        elsif hand_pairs == 5
+            return "Full House!"
+        end
 
     end
 
