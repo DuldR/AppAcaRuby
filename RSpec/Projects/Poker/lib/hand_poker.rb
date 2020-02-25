@@ -24,18 +24,8 @@ class Hand_Poker
     end
 
     def hand_pairs
-        pairs = []
+        pairs = hand_format
         score = []
-
-        
-        #Getting face value from card obj
-        @hand.each do |card|
-            if card.face.to_i == 0
-                pairs << card.face
-            else
-                pairs << card.face.to_i
-            end
-        end
 
         #Going through uniq pairs and finding amount
         pairs.uniq.each do |pair|
@@ -52,7 +42,21 @@ class Hand_Poker
         else
             return score.max
         end
+    end
 
+    #Converts hand to face count for pair eval.
+    def hand_format
+        face_count = []
+
+        @hand.each do |card|
+            if card.face.to_i == 0
+                pairs << card.face
+            else
+                pairs << card.face.to_i
+            end
+        end
+
+        face_count
     end
 
 end
