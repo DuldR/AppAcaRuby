@@ -15,6 +15,11 @@ describe Hand_Poker do
     let(:three_of_a_kind) { [card6,card6,card6,card4,card5] }
     let(:four_of_a_kind) { [card1,card1,card1,card1,card4] }
     let(:house) { [card1,card1,card1,card2,card2] }
+    let(:flush) { [card1,card2,card3,card4,card5] }
+    let(:straight) { [card1,card2,card3,card4,card5] }
+    let(:sflush) { [card1,card2,card3,card4,card5] }
+    let(:rflush) { [card1,card2,card3,card4,card5] }
+
 
     #Multiple subjects with multiple hand types
     subject(:test_hand) { Hand_Poker.new(two_of_a_kind) }
@@ -40,11 +45,24 @@ describe Hand_Poker do
 
     describe '#hand_rank' do
 
-        it 'checks for hand combinations' do
+        it 'checks for hand pairs' do
             expect(test_hand.hand_rank).to eq("2 of a Kind!")
             expect(test_hand_3.hand_rank).to eq("3 of a Kind!")
             expect(test_hand_4.hand_rank).to eq("4 of a Kind!")
-            expect(test_hand_house.hand_rank).to eq("Full House!")
+        end
+
+        it 'checks for full house' do
+            expect(test_hand.hand_rank).to eq("Full House!")
+        end
+
+        it 'checks for straights' do
+            expect(test_hand_straight.hand_rank).to eq("Straight!")
+            expect(test_hand_sflush.hand_rank).to eq("Straight Flush!")
+        end
+
+        it 'checks for flushes' do
+            expect(test_hand_flush.hand_rank).to eq("Flush!")
+            expect(test_hand_rflush.hand_rank).to eq("Royal Flush!")
         end
     end
 
