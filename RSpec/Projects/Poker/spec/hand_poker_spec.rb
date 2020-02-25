@@ -3,19 +3,20 @@ require 'hand_poker'
 
 describe Hand_Poker do
     # Card types
-    let(:card1) { double(:face => 2, :suit => "Spade") }
-    let(:card2) { double(:face => 3, :suit => "Spade") }
-    let(:card3) { double(:face => 2, :suit => "Heart") }
-    let(:card4) { double(:face => 4, :suit => "Spade") }
-    let(:card5) { double(:face => 2, :suit => "Club") }
+    let(:card1) { double(:face => 1, :suit => "Spade") }
+    let(:card2) { double(:face => 2, :suit => "Club") }
+    let(:card3) { double(:face => 3, :suit => "Diamond") }
+    let(:card4) { double(:face => 4, :suit => "Heart") }
+    let(:card5) { double(:face => 5, :suit => "Club") }
     let(:card6) { double(:face => "Jack", :suit => "Club") }
 
     #Hand Types
-    let(:two_of_a_kind) { [card1,card2,card3,card4,card6] }
+    let(:two_of_a_kind) { [card1,card1,card3,card4,card6] }
     let(:three_of_a_kind) { [card6,card6,card6,card4,card5] }
     let(:four_of_a_kind) { [card1,card1,card1,card1,card4] }
     let(:house) { [card1,card1,card1,card2,card2] }
 
+    #Multiple subjects with multiple hand types
     subject(:test_hand) { Hand_Poker.new(two_of_a_kind) }
     subject(:test_hand_3) { Hand_Poker.new(three_of_a_kind) }
     subject(:test_hand_4) { Hand_Poker.new(four_of_a_kind) }
@@ -27,7 +28,7 @@ describe Hand_Poker do
         end
 
         it 'responds to :face and :suit' do
-            expect(test_hand.hand[0].face).to eq(2)
+            expect(test_hand.hand[0].face).to eq(1)
             expect(test_hand.hand[0].suit).to eq("Spade")
         end
 

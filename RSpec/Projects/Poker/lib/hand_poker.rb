@@ -23,40 +23,53 @@ class Hand_Poker
 
     end
 
+
+
+    #Helper Methods
+
+    #Going through uniq pairs and finding amount
     def hand_pairs
-        pairs = hand_format
-        score = []
+        faces, suits = hand_format
+        face = []
+        suit = []
 
-        #Going through uniq pairs and finding amount
-        pairs.uniq.each do |pair|
-            if pair == 0
-                next
-            else
-                score << pairs.count(pair)
-            end
+        faces.uniq.each do |f|
+            face << faces.count(f)
         end
 
-        #Logic for fullhouse"
-        if score == [3,2] || score == [2,3]
-            return 5
-        else
-            return score.max
+        suits.uniq.each do |s|
+            suit << suits.count(s)
         end
+
+        hand_score(face, suit)
     end
 
-    #Converts hand to face count for pair eval.
+    #Converts hand to face/suit count for pair eval
     def hand_format
-        face_count = []
+        face_count = [[],[]]
 
         @hand.each do |card|
             if card.face.to_i == 0
-                pairs << card.face
+                face_count[0] << card.face
+                face_count[1] << card.suit
             else
-                pairs << card.face.to_i
+                face_count[0] << card.face.to_i
+                face_count[1] << card.suit
             end
         end
 
         face_count
+    end
+
+    #Checks score and returns a number based on pairs/straight/flush
+    def hand_score(face, suit)
+
+        if face == [3,2] || face == [2,3]
+            return 5
+        else
+            return face.max
+        end
+
     end
 
 end
