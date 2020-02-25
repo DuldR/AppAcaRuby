@@ -7,6 +7,7 @@ class Hand_Poker
     def initialize(dealt)
 
         @hand = dealt
+        @seq = [0,2,3,4,5,6,7,8,9,10,11,12,13,0]
 
     end
 
@@ -18,7 +19,15 @@ class Hand_Poker
         elsif hand_pairs == 4
             return "4 of a Kind!"
         elsif hand_pairs == 5
+            return "Straight!"
+        elsif hand_pairs == 6
+            return "Flush!"
+        elsif hand_pairs == 7
             return "Full House!"
+        elsif hand_pairs == 8
+            return "Straight Flush!"
+        elsif hand_pairs == 9
+            return "Royal Flush!"
         end
 
     end
@@ -63,13 +72,20 @@ class Hand_Poker
 
     #Checks score and returns a number based on pairs/straight/flush
     def hand_score(face, suit)
+            
 
-        if face == [3,2] || face == [2,3]
-            return 5
-        else
-            return face.max
-        end
 
+        # if face == [3,2] || face == [2,3]
+        #     return 7
+        # else
+        #     return face.max
+        # end
+
+    end
+
+    def five_con?(arr)
+        return false unless arr.size == 4
+        arr.each_cons(2).all? {|a, b| b == a + 1 }
     end
 
 end
