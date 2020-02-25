@@ -74,6 +74,13 @@ class Deck < Card
         4.times { @set << Card.new(2, "Heart") }
     end
 
+    def two_face
+        2.times { @set << Card.new("Jack", "Heart") }
+        1.times { @set << Card.new(2, "Heart") }
+        1.times { @set << Card.new(3, "Heart") }
+        1.times { @set << Card.new(4, "Heart") }
+    end
+
 
 
 end

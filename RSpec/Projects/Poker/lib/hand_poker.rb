@@ -31,12 +31,10 @@ class Hand_Poker
         #Getting face value from card obj
         @hand.each do |card|
             if card.face.to_i == 0
-                next
+                pairs << card.face
             else
                 pairs << card.face.to_i
             end
-
-            pairs.sort
         end
 
         #Going through uniq pairs and finding amount
@@ -50,7 +48,7 @@ class Hand_Poker
 
         #Logic for fullhouse"
         if score == [3,2] || score == [2,3]
-            return [5]
+            return 5
         else
             return score.max
         end
