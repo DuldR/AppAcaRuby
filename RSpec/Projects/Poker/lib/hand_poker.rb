@@ -14,21 +14,24 @@ class Hand_Poker
     end
 
     def hand_rank
-        if hand_pairs == 2
+
+        rank = hand_pairs
+
+        if rank == 2
             return "2 of a Kind!"
-        elsif hand_pairs == 3
+        elsif rank == 3
             return "3 of a Kind!"
-        elsif hand_pairs == 4
+        elsif rank == 4
             return "4 of a Kind!"
-        elsif hand_pairs == 5
+        elsif rank == 5
             return "Straight!"
-        elsif hand_pairs == 6
+        elsif rank == 6
             return "Flush!"
-        elsif hand_pairs == 7
+        elsif rank == 7
             return "Full House!"
-        elsif hand_pairs == 8
+        elsif rank == 8
             return "Straight Flush!"
-        elsif hand_pairs == 9
+        elsif rank == 9
             return "Royal Flush!"
         end
 
@@ -44,6 +47,7 @@ class Hand_Poker
         face = []
         suit = []
 
+        #This is counting PAIRS and is feeding an array of [1,1,1,1,1] to hand_score
         faces.uniq.each do |f|
             face << faces.count(f)
         end
@@ -51,6 +55,9 @@ class Hand_Poker
         suits.uniq.each do |s|
             suit << suits.count(s)
         end
+
+        p face
+        p suit
 
         hand_score(face, suit)
     end
@@ -77,7 +84,7 @@ class Hand_Poker
 
         face_check = face.map do |x|
             if x == "Ace"
-                x = 0
+                x = 1
             elsif x == "Jack"
                 x = 11
             elsif x == "Queen"
