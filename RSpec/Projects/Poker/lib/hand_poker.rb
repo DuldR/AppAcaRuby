@@ -7,7 +7,9 @@ class Hand_Poker
     def initialize(dealt)
 
         @hand = dealt
-        @seq = [0,2,3,4,5,6,7,8,9,10,11,12,13,0]
+
+        #Use this to check for sequentials. 
+        @seq = [1,2,3,4,5,6,7,8,9,10,11,12,13,1,10,11,12,13]
 
     end
 
@@ -72,7 +74,30 @@ class Hand_Poker
 
     #Checks score and returns a number based on pairs/straight/flush
     def hand_score(face, suit)
-            
+
+        face_check = face.map do |x|
+            if x == "Ace"
+                x = 0
+            elsif x == "Jack"
+                x = 11
+            elsif x == "Queen"
+                x = 12
+            elsif x == "King"
+                x = 13
+            else
+                x
+            end
+        end
+
+        face_check.sort!
+
+        if face_check == [1,10,11,12,13]
+            if suit == 5
+                return 9
+            else
+                return 5
+            end
+        end
 
 
         # if face == [3,2] || face == [2,3]
