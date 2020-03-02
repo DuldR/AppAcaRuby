@@ -56,7 +56,23 @@ class Hand_Poker
             suit << suits.count(s)
         end
 
-        p face
+        #If there are no pairs, re map the face array
+        if face == [1,1,1,1,1]
+            face = faces.map do |x|
+                if x == "Ace"
+                    x = 1
+                elsif x == "Jack"
+                    x = 11
+                elsif x == "Queen"
+                    x = 12
+                elsif x == "King"
+                    x = 13
+                else
+                    x
+                end
+            end
+        end
+
         p suit
 
         hand_score(face, suit)
@@ -82,24 +98,14 @@ class Hand_Poker
     #Checks score and returns a number based on pairs/straight/flush
     def hand_score(face, suit)
 
-        face_check = face.map do |x|
-            if x == "Ace"
-                x = 1
-            elsif x == "Jack"
-                x = 11
-            elsif x == "Queen"
-                x = 12
-            elsif x == "King"
-                x = 13
-            else
-                x
-            end
-        end
+        p face
+        face.sort!
+        p face
+        p suit
 
-        face_check.sort!
-
-        if face_check == [1,10,11,12,13]
-            if suit == 5
+        if face == [1,10,11,12,13]
+            # Suit equate to array
+            if suit == [5]
                 return 9
             else
                 return 5

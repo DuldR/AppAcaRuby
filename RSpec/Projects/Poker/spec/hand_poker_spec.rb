@@ -8,12 +8,6 @@ describe Hand_Poker do
     let(:card3) { double(:face => 3, :suit => "Diamond") }
     let(:card4) { double(:face => 4, :suit => "Heart") }
     let(:card5) { double(:face => 5, :suit => "Club") }
-<<<<<<< HEAD
-    let(:card6) { double(:face => "Jack", :suit => "Club") }
-    let(:card7) { double(:face => "Queen", :suit => "Club") }
-    let(:card8) { double(:face => "King", :suit => "Club") }
-    let(:card9) { double(:face => "Ace", :suit => "Club") }
-=======
     let(:card6) { double(:face => 6, :suit => "Club") }
     let(:card7) { double(:face => 7, :suit => "Club") }
     let(:card8) { double(:face => 8, :suit => "Club") }
@@ -24,7 +18,6 @@ describe Hand_Poker do
     let(:card13) { double(:face => "King", :suit => "Club") }
     let(:card14) { double(:face => "Ace", :suit => "Club") }
     
->>>>>>> 3845e2b9a17776dc8aaf89d076cad88369d91c27
 
     #Hand Types
     let(:two_of_a_kind) { [card1,card1,card3,card4,card6] }
