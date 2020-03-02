@@ -8,17 +8,31 @@ class Hand_Poker
 
         @hand = dealt
 
+        #Use this to check for sequentials. 
+        @seq = [1,2,3,4,5,6,7,8,9,10,11,12,13,1,10,11,12,13]
+
     end
 
     def hand_rank
-        if hand_pairs == 2
+
+        rank = hand_pairs
+
+        if rank == 2
             return "2 of a Kind!"
-        elsif hand_pairs == 3
+        elsif rank == 3
             return "3 of a Kind!"
-        elsif hand_pairs == 4
+        elsif rank == 4
             return "4 of a Kind!"
-        elsif hand_pairs == 5
+        elsif rank == 5
+            return "Straight!"
+        elsif rank == 6
+            return "Flush!"
+        elsif rank == 7
             return "Full House!"
+        elsif rank == 8
+            return "Straight Flush!"
+        elsif rank == 9
+            return "Royal Flush!"
         end
 
     end
@@ -33,6 +47,7 @@ class Hand_Poker
         face = []
         suit = []
 
+        #This is counting PAIRS and is feeding an array of [1,1,1,1,1] to hand_score
         faces.uniq.each do |f|
             face << faces.count(f)
         end
@@ -40,6 +55,9 @@ class Hand_Poker
         suits.uniq.each do |s|
             suit << suits.count(s)
         end
+
+        p face
+        p suit
 
         hand_score(face, suit)
     end
@@ -64,12 +82,42 @@ class Hand_Poker
     #Checks score and returns a number based on pairs/straight/flush
     def hand_score(face, suit)
 
-        if face == [3,2] || face == [2,3]
-            return 5
-        else
-            return face.max
+        face_check = face.map do |x|
+            if x == "Ace"
+                x = 1
+            elsif x == "Jack"
+                x = 11
+            elsif x == "Queen"
+                x = 12
+            elsif x == "King"
+                x = 13
+            else
+                x
+            end
         end
 
+        face_check.sort!
+
+        if face_check == [1,10,11,12,13]
+            if suit == 5
+                return 9
+            else
+                return 5
+            end
+        end
+
+
+        # if face == [3,2] || face == [2,3]
+        #     return 7
+        # else
+        #     return face.max
+        # end
+
+    end
+
+    def five_con?(arr)
+        return false unless arr.size == 4
+        arr.each_cons(2).all? {|a, b| b == a + 1 }
     end
 
 end

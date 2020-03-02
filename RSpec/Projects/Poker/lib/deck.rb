@@ -69,6 +69,22 @@ class Deck < Card
         3.times { @set << Card.new(3, "Spade") }
     end
 
+    def straight
+        1.times { @set << Card.new("Jack", "Heart") }
+        1.times { @set << Card.new("Ace", "Heart") }
+        1.times { @set << Card.new(10, "Heart") }
+        1.times { @set << Card.new("Queen", "Heart") }
+        1.times { @set << Card.new("King", "Spade") }
+    end
+
+    def rflush
+        1.times { @set << Card.new("Jack", "Heart") }
+        1.times { @set << Card.new("Ace", "Heart") }
+        1.times { @set << Card.new(10, "Heart") }
+        1.times { @set << Card.new("Queen", "Heart") }
+        1.times { @set << Card.new("King", "Heart") }
+    end
+
     def four
         1.times { @set << Card.new(3, "Heart") }
         4.times { @set << Card.new(2, "Heart") }
