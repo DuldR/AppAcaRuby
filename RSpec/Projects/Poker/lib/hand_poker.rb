@@ -5,12 +5,7 @@ class Hand_Poker
     attr_accessor :hand
 
     def initialize(dealt)
-
         @hand = dealt
-
-        #Use this to check for sequentials. 
-        @seq = [1,2,3,4,5,6,7,8,9,10,11,12,13,1,10,11,12,13]
-
     end
 
     def hand_rank
@@ -73,8 +68,6 @@ class Hand_Poker
             end
         end
 
-        p suit
-
         hand_score(face, suit)
     end
 
@@ -98,22 +91,38 @@ class Hand_Poker
     #Checks score and returns a number based on pairs/straight/flush
     def hand_score(face, suit)
 
-        p face
+        seq = Set[1,2,3,4,5,6,7,8,9,10,11,12,13,1,10,11,12,13]
+        face_set = face.to_set
         face.sort!
-        p face
-        p suit
 
-        if face == [1,10,11,12,13]
-            # Suit equate to array
-            if suit == [5]
+        # If suits are the same
+        if suit == [5]
+            #If the faces are 10, Jack, Queen, King and Ace
+            if face == [1,10,11,12,13]
                 return 9
+            elsif face_set.subset?(seq)
+                return 8
             else
+                return 6
+            end
+        else
+            if face == [3,2] || face == [2,3]
+                return 7
+            elsif face_set.subset?(seq)
                 return 5
+            else
+                return face.max
             end
         end
 
-
-        # if face == [3,2] || face == [2,3]
+        # if face == [1,10,11,12,13]
+        #     # Suit equate to array
+        #     if suit == [5]
+        #         return 9
+        #     else
+        #         return 5
+        #     end
+        # elsif face == [3,2] || face == [2,3]
         #     return 7
         # else
         #     return face.max

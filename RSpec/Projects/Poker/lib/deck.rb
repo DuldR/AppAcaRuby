@@ -71,10 +71,10 @@ class Deck < Card
 
     def straight
         1.times { @set << Card.new("Jack", "Heart") }
-        1.times { @set << Card.new("Ace", "Heart") }
+        1.times { @set << Card.new(7, "Heart") }
         1.times { @set << Card.new(10, "Heart") }
-        1.times { @set << Card.new("Queen", "Heart") }
-        1.times { @set << Card.new("King", "Spade") }
+        1.times { @set << Card.new(8, "Heart") }
+        1.times { @set << Card.new(9, "Spade") }
     end
 
     def rflush
