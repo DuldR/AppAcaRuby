@@ -88,6 +88,11 @@ class Hand_Poker
         face_count
     end
 
+    def five_con?(arr)
+        return false unless arr.size == 4
+        arr.each_cons(2).all? {|a, b| b == a + 1 }
+    end
+
     #Checks score and returns a number based on pairs/straight/flush
     def hand_score(face, suit)
 
@@ -100,7 +105,7 @@ class Hand_Poker
             #If the faces are 10, Jack, Queen, King and Ace
             if face == [1,10,11,12,13]
                 return 9
-            elsif face_set.subset?(seq)
+            elsif five_con?(face)
                 return 8
             else
                 return 6
@@ -108,31 +113,13 @@ class Hand_Poker
         else
             if face == [3,2] || face == [2,3]
                 return 7
-            elsif face_set.subset?(seq)
+            elsif five_con?(face)
                 return 5
             else
                 return face.max
             end
         end
 
-        # if face == [1,10,11,12,13]
-        #     # Suit equate to array
-        #     if suit == [5]
-        #         return 9
-        #     else
-        #         return 5
-        #     end
-        # elsif face == [3,2] || face == [2,3]
-        #     return 7
-        # else
-        #     return face.max
-        # end
-
-    end
-
-    def five_con?(arr)
-        return false unless arr.size == 4
-        arr.each_cons(2).all? {|a, b| b == a + 1 }
     end
 
 end
