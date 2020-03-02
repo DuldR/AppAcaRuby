@@ -9,13 +9,16 @@ describe Hand_Poker do
     let(:card4) { double(:face => 4, :suit => "Heart") }
     let(:card5) { double(:face => 5, :suit => "Club") }
     let(:card6) { double(:face => "Jack", :suit => "Club") }
+    let(:card7) { double(:face => "Queen", :suit => "Club") }
+    let(:card8) { double(:face => "King", :suit => "Club") }
+    let(:card9) { double(:face => "Ace", :suit => "Club") }
 
     #Hand Types
     let(:two_of_a_kind) { [card1,card1,card3,card4,card6] }
     let(:three_of_a_kind) { [card6,card6,card6,card4,card5] }
     let(:four_of_a_kind) { [card1,card1,card1,card1,card4] }
     let(:house) { [card1,card1,card1,card2,card2] }
-    let(:flush) { [card1,card2,card3,card4,card5] }
+    let(:flush) { [card2,card2,card5,card5,card6] }
     let(:straight) { [card1,card2,card3,card4,card5] }
     let(:sflush) { [card1,card2,card3,card4,card5] }
     let(:rflush) { [card1,card2,card3,card4,card5] }
