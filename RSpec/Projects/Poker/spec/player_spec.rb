@@ -26,5 +26,8 @@ describe Player do
 
     end
 
+    describe '#discard?' do
+end
+
 
 end
