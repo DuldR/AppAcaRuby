@@ -28,6 +28,8 @@ class Hand_Poker
             return "Straight Flush!"
         elsif rank == 9
             return "Royal Flush!"
+        elsif rank == 10
+            return "High Card!"
         end
 
     end
@@ -90,12 +92,12 @@ class Hand_Poker
 
     def five_con?(arr)
         return false unless arr.size == 5
-        arr.each_cons(5).all? {|a, b| b == a + 1 }
+        arr.each_cons(2).all? {|a, b| b == a + 1 }
     end
 
     #Checks score and returns a number based on pairs/straight/flush
     def hand_score(face, suit)
-
+        
         face.sort!
         
         # If suits are the same
@@ -118,8 +120,10 @@ class Hand_Poker
             elsif five_con?(face)
                 #Straight
                 return 5
-            else
+            elsif face.uniq.length == 5
                 #Pairs NO High card yet
+                return 10
+            else
                 return face.max
             end
         end
