@@ -10,6 +10,7 @@ class Hand_Poker
 
     def hand_rank
 
+        #Will need to set a rank for these to compare hands.
         rank = hand_pairs
 
         if rank == 2
@@ -28,7 +29,7 @@ class Hand_Poker
             return "Straight Flush!"
         elsif rank == 9
             return "Royal Flush!"
-        elsif rank == 10
+        elsif rank == 1
             return "High Card!"
         end
 
@@ -97,7 +98,7 @@ class Hand_Poker
 
     #Checks score and returns a number based on pairs/straight/flush
     def hand_score(face, suit)
-        
+
         face.sort!
         
         # If suits are the same
@@ -122,7 +123,7 @@ class Hand_Poker
                 return 5
             elsif face.uniq.length == 5
                 #Pairs NO High card yet
-                return 10
+                return 1
             else
                 return face.max
             end
