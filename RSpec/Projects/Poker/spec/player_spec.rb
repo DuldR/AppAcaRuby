@@ -27,7 +27,17 @@ describe Player do
     end
 
     describe '#discard?' do
-end
 
+        it 'raises an error if user input is incorrect' do
+            expect{ player.discard(["howdy"]) }.to raise_error("Not a valid input.")
+            expect{ player.discard([1,2,3,4,5,6]) }.to raise_error("Not a valid input.")
+        end
+
+        it 'takes in user input and discards that many cards' do
+            player.discard([1,2,3])
+            expect(player.player_hand.length).to eq(2)
+        end
+
+    end
 
 end

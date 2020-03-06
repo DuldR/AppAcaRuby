@@ -12,14 +12,37 @@ class Player
         @pot = 20
     end
 
-    def discard?
-        p "How many would you like to discard?: "
+    # Allow discard to take in an array and test that. Keep your private method as a user input
 
-        amount = gets.chomp
+    def discard(arr)
+        raise ArgumentError unless arr.is_a?(Array) || arr.length < 6
 
-        @player_hand.hand[amount].pop
+        arr.each do |card|
+            @player_hand.hand.delete_at(card - 1)
+        end
+    end
 
 
+    # Don't test
+    # THis pulls in the player input and feeds it into the discard function
+    # Returns an array of answers
+    def how_much?
+        answers = []
+        amount = 0
+
+        until amount == 9
+            begin
+                amount = gets.chomp
+                amount = Integer(amount)
+                answers << amount
+            rescue ArgumentError
+                print "Please enter a number."
+                retry
+            end
+        end
+
+        answers.pop
+        answers
     end
 
 
