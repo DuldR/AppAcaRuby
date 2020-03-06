@@ -12,5 +12,15 @@ class Player
         @pot = 20
     end
 
+    def discard?
+        p "How many would you like to discard?: "
+
+        amount = gets.chomp
+
+        @player_hand.hand[amount].pop
+
+
+    end
+
 
 end
