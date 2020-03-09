@@ -15,10 +15,10 @@ class Player
     # Allow discard to take in an array and test that. Keep your private method as a user input
 
     def discard(arr)
-        raise ArgumentError unless arr.is_a?(Array) || arr.length < 6
+        raise "Not a valid input." unless arr.is_a?(Array) && arr.length < 6
 
         arr.each do |card|
-            @player_hand.hand.delete_at(card - 1)
+            @player_hand.delete_at(card - 1)
         end
     end
 

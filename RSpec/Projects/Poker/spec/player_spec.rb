@@ -29,7 +29,7 @@ describe Player do
     describe '#discard?' do
 
         it 'raises an error if user input is incorrect' do
-            expect{ player.discard(["howdy"]) }.to raise_error("Not a valid input.")
+            expect{ player.discard("howdy") }.to raise_error("Not a valid input.")
             expect{ player.discard([1,2,3,4,5,6]) }.to raise_error("Not a valid input.")
         end
 
