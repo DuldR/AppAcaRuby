@@ -23,6 +23,17 @@ class Player
     end
 
 
+    # Allow user to bet amount from their pot
+
+    def bet(amount)
+        raise "You don't have enough to bet that amount." if amount > @pot
+
+        bet_amount = @pot -= amount
+
+        bet_amount
+    end
+
+
     # Don't test
     # THis pulls in the player input and feeds it into the discard function
     # Returns an array of answers

@@ -38,6 +38,24 @@ describe Player do
             expect(player.player_hand.length).to eq(2)
         end
 
+        it 'takes in user input and discards specified cards' do
+            player.discard([3])
+            expect(player.player_hand).to eq([card1,card2,card4,card5])
+        end
+
+    end
+
+    describe '#bet' do
+
+        it 'takes user input and deducts from the users pot' do
+            player.bet(10)
+            expect(player.pot).to eq(10)
+        end
+
+        it 'user cannot bet more than they have' do
+            expect{ player.bet(30) }.to raise_error("You don't have enough to bet that amount.")
+        end
+
     end
 
 end
