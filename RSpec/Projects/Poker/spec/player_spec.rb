@@ -61,18 +61,18 @@ describe Player do
     describe '#move' do
 
         it 'acts on user intent of folding' do
-            player.move("F")
             expect(player).to receive(:fold)
+            player.move("F")
         end
 
         it 'acts on user intent of raising' do
+            expect(player).to receive(:raise?)
             player.move("R")
-            expect(player).to receive(:raise)
         end
 
         it 'acts on user intent of seeing' do
-            player.move("S")
             expect(player).to receive(:see)
+            player.move("S")
         end
 
     end
