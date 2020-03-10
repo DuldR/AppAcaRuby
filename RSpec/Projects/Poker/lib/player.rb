@@ -45,6 +45,14 @@ class Player
     end
 
     def fold
+        @player_hand = []
+    end
+
+    def see
+
+    end
+
+    def raise?
 
     end
 

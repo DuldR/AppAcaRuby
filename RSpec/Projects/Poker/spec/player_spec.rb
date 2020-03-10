@@ -77,4 +77,24 @@ describe Player do
 
     end
 
+    describe '#fold' do
+        it 'sets players hand to empty' do
+            player.fold
+            expect(player.player_hand).to be_empty
+        end
+    end
+
+    describe '#raise?' do
+        it 'sets players hand to empty' do
+            player.raise?
+
+        end
+    end
+
+    describe '#see' do
+        it 'sets players hand to empty' do
+            player.see
+        end
+    end
+
 end
