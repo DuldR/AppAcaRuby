@@ -53,7 +53,7 @@ class Player
     end
 
     def raise?
-
+        bet(how_much_pot?)
     end
 
     # Don't test
@@ -65,6 +65,7 @@ class Player
     
         until amount == 9
             print "Which cards would you like to discard?(1,2,3,4 or 5?): "
+            print "\n"
             begin
                 amount = gets.chomp
                 amount = Integer(amount)
@@ -86,6 +87,7 @@ class Player
 
         until amount > 0
             print "Please enter how much you'd like to bet."
+            print "\n"
             begin
                 amount = gets.chomp
                 amount = Integer(amount)
