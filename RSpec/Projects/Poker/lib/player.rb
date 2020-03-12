@@ -37,21 +37,29 @@ class Player
         elsif answer == "R"
             self.raise?
         elsif answer == "S"
-            self.see
-        else
-            raise "Not a valid answer. Please enter F, R or S"
+
+            #Use game logic to see if S is returned and call the see method with a given match input.
+            return "S"
         end
 
     end
 
+    #Set the player hand to empty if they fold.
     def fold
         @player_hand = []
     end
 
-    def see
+    #This will take in the game last bet deduct from the users pot accordingly
+    def see(match)
 
+        if match > @pot
+            bet(@pot)
+        end
+        
+        bet(match)
     end
 
+    #This will wask the user how much they'd like to bet.
     def raise?
         bet(how_much_pot?)
     end
@@ -64,7 +72,7 @@ class Player
         amount = 0
     
         until amount == 9
-            print "Which cards would you like to discard?(1,2,3,4 or 5?): "
+            print "Which cards would you like to discard?(1,2,3,4 or 5)? Enter 9 to end. "
             print "\n"
             begin
                 amount = gets.chomp
@@ -95,6 +103,7 @@ class Player
                 if amount > @pot
                     amount = 0
                     print "You can't bet more than you have."
+                    print "\n"
                 end
 
             rescue ArgumentError
@@ -125,5 +134,7 @@ class Player
             end
         end
     end
+
+ 
 
 end
