@@ -86,7 +86,8 @@ describe Player do
 
     describe '#raise?' do
         it 'sets players hand to empty' do
-            player.raise?
+            expect(player).to receive(:bet)
+            player.move("R")
 
         end
     end
