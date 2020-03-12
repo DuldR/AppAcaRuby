@@ -24,11 +24,11 @@ class Player
 
     # Allow user to bet amount from their pot
     def bet(amount)
-        raise "You don't have enough to bet that amount." if amount > @pot
 
         bet_amount = @pot -= amount
 
         bet_amount
+
     end
 
     def move(answer)
@@ -91,6 +91,12 @@ class Player
             begin
                 amount = gets.chomp
                 amount = Integer(amount)
+
+                if amount > @pot
+                    amount = 0
+                    print "You can't bet more than you have."
+                end
+
             rescue ArgumentError
                 print "Please enter a number."
                 print "\n"
