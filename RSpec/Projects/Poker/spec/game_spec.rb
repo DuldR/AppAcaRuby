@@ -11,23 +11,10 @@ describe Game do
 
     describe '#initialize' do
 
-        it 'sets a global deck' do
-            expect(game.deck).not_to be_empty
-        end
-
         it 'total pot must be 0' do
             expect(game.total_pot).to eq(0)
         end
 
-        it 'sets a two players' do
-            expect(game.player1).not_to be_empty
-            expect(game.player2).not_to be_empty
-        end
-
-    end
-
-    describe '#turn' do
-    
     end
 
     describe '#bigpot' do
