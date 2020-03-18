@@ -52,9 +52,6 @@ describe Player do
             expect(player.pot).to eq(10)
         end
 
-        it 'user cannot bet more than they have' do
-            expect{ player.bet(30) }.to raise_error("You don't have enough to bet that amount.")
-        end
 
     end
 
@@ -68,11 +65,6 @@ describe Player do
         it 'acts on user intent of raising' do
             expect(player).to receive(:raise?)
             player.move("R")
-        end
-
-        it 'acts on user intent of seeing' do
-            expect(player).to receive(:see)
-            player.move("S")
         end
 
     end
@@ -94,7 +86,8 @@ describe Player do
 
     describe '#see' do
         it 'sets players hand to empty' do
-            player.see
+            expect(player).to receive(:bet)
+            player.see(10)
         end
     end
 
