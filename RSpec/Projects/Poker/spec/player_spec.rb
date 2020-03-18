@@ -76,13 +76,6 @@ describe Player do
         end
     end
 
-    describe '#raise?' do
-        it 'sets players hand to empty' do
-            expect(player).to receive(:bet)
-            player.move("R")
-
-        end
-    end
 
     describe '#see' do
         it 'sets players hand to empty' do

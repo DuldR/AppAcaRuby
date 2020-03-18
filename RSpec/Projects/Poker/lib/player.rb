@@ -1,5 +1,4 @@
 require_relative "hand_poker"
-require_relative "deck"
 
 
 class Player
