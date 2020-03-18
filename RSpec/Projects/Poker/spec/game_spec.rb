@@ -34,6 +34,19 @@ describe Game do
 
     end
 
+    describe '#win?' do
+    
+    end
+
+    describe '#lose?' do
+
+    end
+
+    describe 'gameover?' do
+
+    end
+
+
 
 
 
