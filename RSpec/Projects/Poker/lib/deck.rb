@@ -69,6 +69,12 @@ class Deck < Card
         3.times { @set << Card.new(3, "Spade") }
     end
 
+    def two_pair
+        2.times { @set << Card.new(2, "Heart") }
+        2.times { @set << Card.new(3, "Spade") }
+        1.times { @set << Card.new(9, "Spade") }
+    end
+
     def straight
         1.times { @set << Card.new("Jack", "Heart") }
         1.times { @set << Card.new(7, "Heart") }
@@ -96,6 +102,12 @@ class Deck < Card
     def four
         1.times { @set << Card.new(3, "Heart") }
         4.times { @set << Card.new(2, "Club") }
+    end
+
+    def three
+        1.times { @set << Card.new(3, "Heart") }
+        3.times { @set << Card.new(2, "Club") }
+        1.times { @set << Card.new(4, "Heart") }
     end
 
     def two_face

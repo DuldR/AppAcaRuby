@@ -13,11 +13,13 @@ class Hand_Poker
         #Will need to set a rank for these to compare hands.
         rank = hand_pairs
 
-        if rank == 2
-            return "2 of a Kind!"
-        elsif rank == 3
-            return "3 of a Kind!"
+        if rank == 3
+            return "Two Pair!"
         elsif rank == 4
+            return "3 of a Kind!"
+        elsif rank == 2
+            return "A Pair!"
+        elsif rank == 8
             return "4 of a Kind!"
         elsif rank == 5
             return "Straight!"
@@ -25,9 +27,9 @@ class Hand_Poker
             return "Flush!"
         elsif rank == 7
             return "Full House!"
-        elsif rank == 8
-            return "Straight Flush!"
         elsif rank == 9
+            return "Straight Flush!"
+        elsif rank == 10
             return "Royal Flush!"
         elsif rank == 1
             return "High Card!"
@@ -98,7 +100,7 @@ class Hand_Poker
 
     #Checks score and returns a number based on pairs/straight/flush
     def hand_score(face, suit)
-
+        
         face.sort!
         
         # If suits are the same
@@ -106,10 +108,10 @@ class Hand_Poker
             #If the faces are 10, Jack, Queen, King and Ace
             if face == [1,10,11,12,13]
                 #RFlush
-                return 9
+                return 10
             elsif five_con?(face)
                 #SFlush
-                return 8
+                return 9
             else
                 #Flush
                 return 6
@@ -118,14 +120,24 @@ class Hand_Poker
             if face == [3,2] || face == [2,3]
                 #FUll House
                 return 7
+            elsif face == [1,2,2] || face == [2,1,2] || face == [2,2,1]
+                #Two Pair
+                return 3
             elsif five_con?(face)
                 #Straight
                 return 5
             elsif face.uniq.length == 5
                 #Pairs NO High card yet
                 return 1
-            else
-                return face.max
+            elsif face.max == 4
+                #4 of a kind
+                return 8
+            elsif face.max == 3
+                #3 of a kind
+                return 4
+            elsif face.max == 2
+                #A pair
+                return 2
             end
         end
 

@@ -21,7 +21,8 @@ describe Hand_Poker do
 
     #Hand Types
     let(:high_card) { [card1,card2,card3,card4,card7] }
-    let(:two_of_a_kind) { [card1,card1,card3,card4,card6] }
+    let(:pair) { [card1,card1,card3,card4,card6] }
+    let(:two_pair) { [card1,card1,card2,card2,card6] }
     let(:three_of_a_kind) { [card6,card6,card6,card4,card5] }
     let(:four_of_a_kind) { [card1,card1,card1,card1,card4] }
     let(:house) { [card1,card1,card1,card2,card2] }
@@ -32,7 +33,8 @@ describe Hand_Poker do
 
 
     #Multiple subjects with multiple hand types
-    subject(:test_hand) { Hand_Poker.new(two_of_a_kind) }
+    subject(:test_hand) { Hand_Poker.new(pair) }
+    subject(:test_hand_tpair) { Hand_Poker.new(two_pair) }
     subject(:test_hand_high) { Hand_Poker.new(high_card) }
     subject(:test_hand_3) { Hand_Poker.new(three_of_a_kind) }
     subject(:test_hand_4) { Hand_Poker.new(four_of_a_kind) }
@@ -65,7 +67,8 @@ describe Hand_Poker do
         end
 
         it 'checks for hand pairs' do
-            expect(test_hand.hand_rank).to eq("2 of a Kind!")
+            expect(test_hand.hand_rank).to eq("A Pair!")
+            expect(test_hand_tpair.hand_rank).to eq("Two Pair!")
             expect(test_hand_3.hand_rank).to eq("3 of a Kind!")
             expect(test_hand_4.hand_rank).to eq("4 of a Kind!")
         end

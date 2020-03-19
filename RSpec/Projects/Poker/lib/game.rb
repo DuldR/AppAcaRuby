@@ -13,7 +13,7 @@ class Game
         @deck.ready?
         @player1 = Player.new(Hand_Poker.new(@deck.deal(5)))
         @player2 = Player.new(Hand_Poker.new(@deck.deal(5)))
-
+        @current_turn = 1
     end
 
     def turn
@@ -25,7 +25,11 @@ class Game
     end
 
     def win?
-
+        if @player1.player_hand.hand_rank > @player2.player_hand.hand_rank
+            return 1
+        else
+            return 2
+        end
     end
 
     def lose?(player)
@@ -38,7 +42,11 @@ class Game
     end
 
     def gameover?
-
+        if lose?(@player1) || lose?(@player2)
+            return true
+        else
+            return false
+        end
     end
 
 
