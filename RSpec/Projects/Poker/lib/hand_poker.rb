@@ -10,30 +10,32 @@ class Hand_Poker
 
     def hand_rank
 
-        #Will need to set a rank for these to compare hands.
         rank = hand_pairs
 
-        if rank == 3
-            return "Two Pair!"
-        elsif rank == 4
-            return "3 of a Kind!"
-        elsif rank == 2
-            return "A Pair!"
-        elsif rank == 8
-            return "4 of a Kind!"
-        elsif rank == 5
-            return "Straight!"
-        elsif rank == 6
-            return "Flush!"
-        elsif rank == 7
-            return "Full House!"
-        elsif rank == 9
-            return "Straight Flush!"
-        elsif rank == 10
-            return "Royal Flush!"
-        elsif rank == 1
-            return "High Card!"
-        end
+        #This was used to ensure the correct ranks
+        # if rank == 3
+        #     return "Two Pair!"
+        # elsif rank == 4
+        #     return "3 of a Kind!"
+        # elsif rank == 2
+        #     return "A Pair!"
+        # elsif rank == 8
+        #     return "4 of a Kind!"
+        # elsif rank == 5
+        #     return "Straight!"
+        # elsif rank == 6
+        #     return "Flush!"
+        # elsif rank == 7
+        #     return "Full House!"
+        # elsif rank == 9
+        #     return "Straight Flush!"
+        # elsif rank == 10
+        #     return "Royal Flush!"
+        # elsif rank == 1
+        #     return "High Card!"
+        # end
+
+        rank
 
     end
 
@@ -100,7 +102,7 @@ class Hand_Poker
 
     #Checks score and returns a number based on pairs/straight/flush
     def hand_score(face, suit)
-        
+
         face.sort!
         
         # If suits are the same

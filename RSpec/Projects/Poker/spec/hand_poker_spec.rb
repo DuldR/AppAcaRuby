@@ -63,28 +63,28 @@ describe Hand_Poker do
     describe '#hand_rank' do
 
         it 'checks for hand pairs' do
-            expect(test_hand_high.hand_rank).to eq("High Card!")
+            expect(test_hand_high.hand_rank).to eq(1)
         end
 
         it 'checks for hand pairs' do
-            expect(test_hand.hand_rank).to eq("A Pair!")
-            expect(test_hand_tpair.hand_rank).to eq("Two Pair!")
-            expect(test_hand_3.hand_rank).to eq("3 of a Kind!")
-            expect(test_hand_4.hand_rank).to eq("4 of a Kind!")
+            expect(test_hand.hand_rank).to eq(2)
+            expect(test_hand_tpair.hand_rank).to eq(3)
+            expect(test_hand_3.hand_rank).to eq(4)
+            expect(test_hand_4.hand_rank).to eq(8)
         end
 
         it 'checks for full house' do
-            expect(test_hand_house.hand_rank).to eq("Full House!")
+            expect(test_hand_house.hand_rank).to eq(7)
         end
 
         it 'checks for straights' do
-            expect(test_hand_straight.hand_rank).to eq("Straight!")
-            expect(test_hand_sflush.hand_rank).to eq("Straight Flush!")
+            expect(test_hand_straight.hand_rank).to eq(5)
+            expect(test_hand_sflush.hand_rank).to eq(9)
         end
 
         it 'checks for flushes' do
-            expect(test_hand_flush.hand_rank).to eq("Flush!")
-            expect(test_hand_rflush.hand_rank).to eq("Royal Flush!")
+            expect(test_hand_flush.hand_rank).to eq(6)
+            expect(test_hand_rflush.hand_rank).to eq(10)
         end
     end
 
