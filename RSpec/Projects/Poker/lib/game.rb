@@ -28,7 +28,12 @@ class Game
 
     end
 
-    def lose?
+    def lose?(player)
+        if player.pot == 0
+            return true
+        else
+            return false
+        end
     
     end
 
