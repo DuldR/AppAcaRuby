@@ -26,9 +26,9 @@ class Game
 
     def win?
         if @player1.player_hand.hand_rank > @player2.player_hand.hand_rank
-            return 1
+            p "Player 1 Wins!"
         else
-            return 2
+            p "Player 2 Wins!"
         end
     end
 

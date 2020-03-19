@@ -18,13 +18,6 @@ describe Game do
 
     end
 
-    describe '#bigpot' do
-
-    end
-
-    describe '#win?' do
-    
-    end
 
     describe '#lose?' do
     
@@ -33,17 +26,6 @@ describe Game do
         end
 
     end
-
-    describe 'gameover?' do
-
-    end
-
-
-
-
-
-
-
 
 
 
