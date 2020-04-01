@@ -18,6 +18,8 @@ class Game
 
     def turn
 
+        @player1.discard?
+
     end
 
     def bigpot

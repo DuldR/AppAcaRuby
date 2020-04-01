@@ -15,9 +15,36 @@ class Player
     def discard(arr)
         raise "Not a valid input." unless arr.is_a?(Array) && arr.length < 6
 
+
+
         arr.each do |card|
-            @player_hand.delete_at(card - 1)
+            @player_hand.hand[card - 1] = 0
         end
+
+        @player_hand.hand.reject! { |card| card == 0 }
+    end
+
+    def discard?
+        print "How much would you like to discard? Enter card numbers seperated by a comma: "
+
+        disc = gets.chomp
+        disc = disc.split(",").map(&:to_i)
+        
+
+        if disc.include?(0)
+            print "No cards chosen!"
+        else
+            discard(disc)
+        end
+
+    end
+
+    def receive(deckArr)
+
+        deckArr.each do |card|
+            @player_hand.hand << card
+        end
+
     end
 
 
