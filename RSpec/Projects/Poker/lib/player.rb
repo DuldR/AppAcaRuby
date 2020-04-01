@@ -55,7 +55,7 @@ class Player
 
         bet_amount = @pot -= amount
 
-        bet_amount
+        amount
 
     end
 

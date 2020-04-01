@@ -22,17 +22,26 @@ class Game
 
     def discard_and_receive
 
+        #Calls discard on the players hand and then re-deals cards from the deck instance variable back into their hand
         print "Player 1: "
         #IF THIS WORKS LOL
         @player1.receive(@deck.deal(@player1.discard?))
-    
 
-        # print "Player 2: "
-        # @player2.discard?
+        print "Player 2: "
+        @player2.receiver(@deck.deal(@player2.discard?))
 
     end
 
-    def bigpot
+    def place_bets
+        #This function should only take out from the players pot, deduct it from theirs and sum it together.
+
+
+        print "Player 1: "
+        @total_pot += @player1.raise?
+
+        print "Player 2: "
+        @total_pot += @player2.raise?
+
 
     end
 
