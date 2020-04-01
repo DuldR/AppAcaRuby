@@ -15,13 +15,12 @@ class Player
     def discard(arr)
         raise "Not a valid input." unless arr.is_a?(Array) && arr.length < 6
 
-
-
         arr.each do |card|
             @player_hand.hand[card - 1] = 0
         end
 
         @player_hand.hand.reject! { |card| card == 0 }
+
     end
 
     def discard?
@@ -33,9 +32,12 @@ class Player
 
         if disc.include?(0)
             print "No cards chosen!"
+            return 0
         else
             discard(disc)
         end
+
+        return disc.length
 
     end
 

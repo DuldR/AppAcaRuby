@@ -18,7 +18,16 @@ class Game
 
     def turn
 
+    end
+
+    def discard_and_receive
+
+        print "Player 1: "
         @player1.discard?
+    
+
+        # print "Player 2: "
+        # @player2.discard?
 
     end
 
