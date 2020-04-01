@@ -23,7 +23,8 @@ class Game
     def discard_and_receive
 
         print "Player 1: "
-        @player1.discard?
+        #IF THIS WORKS LOL
+        @player1.receive(@deck.deal(@player1.discard?))
     
 
         # print "Player 2: "
