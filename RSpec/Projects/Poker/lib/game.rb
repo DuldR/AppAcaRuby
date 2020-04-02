@@ -17,6 +17,12 @@ class Game
     end
 
     def turn
+        show_hands
+        discard_and_receive
+        place_bets
+
+        #Loop here until both calls or one folds
+        #That'll be the final step!
 
     end
 
@@ -28,9 +34,35 @@ class Game
         @player1.receive(@deck.deal(@player1.discard?))
 
         print "Player 2: "
-        @player2.receiver(@deck.deal(@player2.discard?))
+        @player2.receive(@deck.deal(@player2.discard?))
 
     end
+
+    def show_hands
+        print "Here's Player 1's hand: "
+        print_hand(@player1.player_hand.hand)
+        print "\n"
+        print "---------------------------------------"
+        print "\n"
+        print "Here's Player 2's hand: "
+        print_hand(@player2.player_hand.hand)
+    end
+
+    def print_hand(player_hand)
+
+        player_hand.each.with_index do |card, i|
+            print "\n"
+            print "[" + (i + 1).to_s + "]"
+            print card.face
+            print " of "
+            print card.suit
+            print "s "
+            print "\n"
+        end
+
+    end
+
+
 
     def place_bets
         #This function should only take out from the players pot, deduct it from theirs and sum it together.
@@ -44,6 +76,7 @@ class Game
 
 
     end
+
 
     def win?
         if @player1.player_hand.hand_rank > @player2.player_hand.hand_rank

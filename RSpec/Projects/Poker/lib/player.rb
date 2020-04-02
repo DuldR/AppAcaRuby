@@ -53,7 +53,7 @@ class Player
     # Allow user to bet amount from their pot
     def bet(amount)
 
-        bet_amount = @pot -= amount
+        @pot -= amount
 
         amount
 
