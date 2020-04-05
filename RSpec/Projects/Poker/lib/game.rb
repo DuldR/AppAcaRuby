@@ -17,12 +17,31 @@ class Game
     end
 
     def turn
+
+        #Show the players their hands
         show_hands
+
+        #Ask if they'd like to discard cards and then receive new ones
         discard_and_receive
+
+        #Show the players their hands again
+        show_hands
+
+        #Ask for their bets
         place_bets
 
         #Loop here until both calls or one folds
         #That'll be the final step!
+
+        until betting_over? == true
+            print "Player 1, what's your move?"
+            print "\n"
+            @player1.move
+
+            print "Player 2, what's your move?"
+            print "\n"
+            @player2.move
+        end
 
     end
 
@@ -46,18 +65,34 @@ class Game
         print "\n"
         print "Here's Player 2's hand: "
         print_hand(@player2.player_hand.hand)
+        print "\n"
     end
 
     def print_hand(player_hand)
 
         player_hand.each.with_index do |card, i|
             print "\n"
-            print "[" + (i + 1).to_s + "]"
+            print "[" + (i + 1).to_s + "] "
             print card.face
             print " of "
             print card.suit
             print "s "
             print "\n"
+        end
+
+    end
+
+    def betting_over?
+
+        #If the player has called, folded or raised.
+        # Call = 1, Fold = 2, Raise = 3
+
+        if @player1.player_status == 1 && @player2.player_status == 1
+            return true
+        elsif @player1.player_status == 2 || @player2.player_status == 2
+            return true
+        else
+            return false
         end
 
     end

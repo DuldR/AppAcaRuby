@@ -3,12 +3,16 @@ require_relative "hand_poker"
 
 class Player
 
-    attr_reader :player_hand, :pot
+    attr_reader :player_hand, :pot, :player_status
 
 
     def initialize(hand)
         @player_hand = hand
         @pot = 20
+
+        #If the player has called, folded or raised.
+        # Call = 1, Fold = 2, Raise = 3
+        @player_status = 0
     end
 
     # Allow discard to take in an array and test that. Keep your private method as a user input
@@ -41,6 +45,9 @@ class Player
 
     end
 
+    #Receiv Pot Amount
+
+    #Receive Cards
     def receive(deckArr)
 
         deckArr.each do |card|
@@ -59,15 +66,18 @@ class Player
 
     end
 
-    def move(answer)
+    def move
+
+        answer = how_much_move?
+
         if answer == "F"
             self.fold
+            @player_status = 2
         elsif answer == "R"
             self.raise?
+            @player_status = 3
         elsif answer == "S"
-
-            #Use game logic to see if S is returned and call the see method with a given match input.
-            return "S"
+            @player_status = 1
         end
 
     end
@@ -151,6 +161,7 @@ class Player
 
         until answer != nil
             print "Please enter (F)old, (R)aise, (S)ee."
+            print "\n"
             answer = gets.chomp
 
             if answer == "F" || answer == "S" || answer == "R"
