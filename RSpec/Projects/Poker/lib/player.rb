@@ -45,7 +45,7 @@ class Player
 
     end
 
-    #Receiv Pot Amount
+    #Receive Pot Amount
 
     #Receive Cards
     def receive(deckArr)
@@ -64,6 +64,16 @@ class Player
 
         amount
 
+    end
+
+    # Flush player cards for new game.
+
+    def empty
+        @player_hand.hand = []
+    end
+
+    def reset_status
+        @player_status = 0
     end
 
     def move

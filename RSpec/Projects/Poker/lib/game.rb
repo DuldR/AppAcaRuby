@@ -17,6 +17,8 @@ class Game
     end
 
     def turn
+        # Ensure the players are ready
+        self.prep_status
 
         #Show the players their hands
         self.show_hands
@@ -43,7 +45,12 @@ class Game
             @player2.move
         end
 
-        self.win?
+        if self.check_status == false
+            self.win?
+        end
+  
+
+        self.empty_and_receive
 
     end
 
@@ -56,6 +63,23 @@ class Game
 
         print "Player 2: "
         @player2.receive(@deck.deal(@player2.discard?))
+
+    end
+
+    def empty_and_receive
+
+        @player1.empty
+        @player2.empty
+
+        @player1.receive(@deck.deal(5))
+        @player2.receive(@deck.deal(5))
+
+    end
+
+    def prep_status
+
+        @player1.reset_status
+        @player2.reset_status
 
     end
 
@@ -114,16 +138,26 @@ class Game
 
     end
 
+    def check_status
+
+        if @player1.player_status == 2 && @player2.player_status == 2
+            p "A Draw!"
+            return true
+        elsif @player1.player_status == 2
+            p "Player 2 Wins!"
+            return true
+        elsif @player2.player_status == 2
+            p "Player 1 Wins!"
+            return true
+        end
+
+        return false
+
+    end
 
     def win?
 
-        if @player1.player_status == 2 && @player1.player_status == 2
-            p "A Draw!"
-        elsif @player1.player_status == 2
-            p "Player 2 Wins!"
-        elsif @player2.player_status == 2
-            p "Player 1 Wins!"
-        elsif @player1.player_hand.hand_rank > @player2.player_hand.hand_rank
+        if @player1.player_hand.hand_rank > @player2.player_hand.hand_rank
             p "Player 1 Wins!"
         elsif @player1.player_hand.hand_rank == @player2.player_hand.hand_rank
             p "A Draw!"
