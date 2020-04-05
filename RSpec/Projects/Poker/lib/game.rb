@@ -1,3 +1,4 @@
+require_relative "card"
 require_relative "deck"
 require_relative "player"
 require_relative "hand_poker"
@@ -14,6 +15,14 @@ class Game
         @player1 = Player.new(Hand_Poker.new(@deck.deal(5)))
         @player2 = Player.new(Hand_Poker.new(@deck.deal(5)))
         @current_turn = 1
+    end
+
+    def play
+
+        until self.gameover?
+            self.turn
+        end
+
     end
 
     def turn
@@ -193,4 +202,8 @@ class Game
     end
 
 
+end
+
+if $PROGRAM_NAME == __FILE__
+  Game.new.play
 end
