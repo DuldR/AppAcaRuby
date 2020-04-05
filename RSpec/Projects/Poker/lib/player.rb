@@ -105,6 +105,7 @@ class Player
     end
 
     #This will wask the user how much they'd like to bet.
+    #Need to update this method to allow for raising against each other.
     def raise?
         bet(self.how_much_pot?)
     end

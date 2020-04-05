@@ -1,6 +1,7 @@
 require_relative "deck"
 
 class Hand_Poker
+    #Need to set high card? And check that for duplicate combos.
     attr_reader :deck
     attr_accessor :hand
 
