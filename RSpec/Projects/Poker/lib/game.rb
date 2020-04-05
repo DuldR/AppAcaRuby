@@ -19,21 +19,21 @@ class Game
     def turn
 
         #Show the players their hands
-        show_hands
+        self.show_hands
 
         #Ask if they'd like to discard cards and then receive new ones
-        discard_and_receive
+        self.discard_and_receive
 
         #Show the players their hands again
-        show_hands
+        self.show_hands
 
         #Ask for their bets
-        place_bets
+        self.place_bets
 
         #Loop here until both calls or one folds
         #That'll be the final step!
 
-        until betting_over? == true
+        until self.betting_over? == true
             print "Player 1, what's your move?"
             print "\n"
             @player1.move
@@ -42,6 +42,8 @@ class Game
             print "\n"
             @player2.move
         end
+
+        self.win?
 
     end
 
@@ -114,8 +116,17 @@ class Game
 
 
     def win?
-        if @player1.player_hand.hand_rank > @player2.player_hand.hand_rank
+
+        if @player1.player_status == 2 && @player1.player_status == 2
+            p "A Draw!"
+        elsif @player1.player_status == 2
+            p "Player 2 Wins!"
+        elsif @player2.player_status == 2
             p "Player 1 Wins!"
+        elsif @player1.player_hand.hand_rank > @player2.player_hand.hand_rank
+            p "Player 1 Wins!"
+        elsif @player1.player_hand.hand_rank == @player2.player_hand.hand_rank
+            p "A Draw!"
         else
             p "Player 2 Wins!"
         end

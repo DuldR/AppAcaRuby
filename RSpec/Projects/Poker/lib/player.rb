@@ -68,10 +68,9 @@ class Player
 
     def move
 
-        answer = how_much_move?
+        answer = self.how_much_move?
 
         if answer == "F"
-            self.fold
             @player_status = 2
         elsif answer == "R"
             self.raise?
@@ -83,9 +82,7 @@ class Player
     end
 
     #Set the player hand to empty if they fold.
-    def fold
-        @player_hand = []
-    end
+    # Removed this method
 
     #This will take in the game last bet deduct from the users pot accordingly
     def see(match)
@@ -99,7 +96,7 @@ class Player
 
     #This will wask the user how much they'd like to bet.
     def raise?
-        bet(how_much_pot?)
+        bet(self.how_much_pot?)
     end
 
     # Don't test
