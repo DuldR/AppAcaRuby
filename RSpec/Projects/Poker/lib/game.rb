@@ -17,7 +17,7 @@ class Game
     end
 
     def turn
-        # Ensure the players are ready
+        # Ensure the players are ready.
         self.prep_status
 
         #Show the players their hands
@@ -50,6 +50,7 @@ class Game
         end
   
 
+        #Empties the players hands and gives them 5 more cards. Will set a new deck every game.
         self.empty_and_receive
 
     end
@@ -68,11 +69,18 @@ class Game
 
     def empty_and_receive
 
+        #Empties player's hands
         @player1.empty
         @player2.empty
 
+        #Sets a new deck. "Shuffles the cards back in"
+        @deck = Deck.new
+        @deck.ready?
+    
+        #Five new cards from the new deck
         @player1.receive(@deck.deal(5))
         @player2.receive(@deck.deal(5))
+
 
     end
 
@@ -125,9 +133,8 @@ class Game
 
 
 
+    #This function should only take out from the players pot, deduct it from theirs and sum it together.
     def place_bets
-        #This function should only take out from the players pot, deduct it from theirs and sum it together.
-
 
         print "Player 1: "
         @total_pot += @player1.raise?
@@ -138,6 +145,7 @@ class Game
 
     end
 
+    #Checks if a player folded or not.
     def check_status
 
         if @player1.player_status == 2 && @player2.player_status == 2
@@ -155,6 +163,7 @@ class Game
 
     end
 
+    #Checks player hands rank against each other. Still need to fix high card and when pairs match each other.
     def win?
 
         if @player1.player_hand.hand_rank > @player2.player_hand.hand_rank
