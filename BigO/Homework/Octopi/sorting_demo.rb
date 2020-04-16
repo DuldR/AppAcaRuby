@@ -26,7 +26,7 @@ class SortingDemo
   end
 
   # Merge Sort: O(n*lg(n))
-  def self.merge_sort (array, &prc)
+  def merge_sort (array, &prc)
     return array if array.length <= 1
 
     mid_idx = array.length / 2
@@ -38,7 +38,7 @@ class SortingDemo
   end
 
   # NB: In Ruby, shift is an O(1) operation. This is not true of all languages.
-  def self.merge(left, right, &prc)
+  def merge(left, right, &prc)
     merged_array = []
     prc = Proc.new { |num1, num2| num1 <=> num2 } unless block_given?
     until left.empty? || right.empty?
@@ -50,6 +50,7 @@ class SortingDemo
       when 1
         merged_array << right.shift
       end
+      p merged_array
     end
 
     merged_array + left + right
