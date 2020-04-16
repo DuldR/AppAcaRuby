@@ -1,4 +1,7 @@
 octopi = ['fish', 'fiiish', 'fiiiiish', 'fiiiish', 'fffish', 'ffiiiiisshh', 'fsh', 'fiiiissshhhhhh', 'fiiish']
+tiles_array = ["up", "right-up", "right", "right-down", "down", "left-down", "left",  "left-up" ]
+tiles_hash = {"up" => 0, "right-up" => 1, "right" => 2, "right-down" => 3, "down" => 4, "left-down" => 5, "left" => 6,  "left-up" => 7 }
+
 
 def o2(arr)
     biggest = 'fish'
@@ -55,4 +58,32 @@ def merge(left, right, &prc)
     
     merged_array + left + right
 
+end
+
+def clever(arr)
+
+    largest = arr[0]
+
+    arr.each do |leg|
+        if leg.length > largest.length
+            largest = leg
+        end 
+    end
+
+    largest
+
+end
+
+def dance(direction, tile)
+
+    tile.each.with_index do |dir, i|
+        if direction == dir
+            return i
+        end
+    end
+
+end
+
+def constant(direction, tilehash)
+    tilehash[direction]
 end
