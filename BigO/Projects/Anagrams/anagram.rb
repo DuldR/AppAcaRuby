@@ -1,5 +1,7 @@
 
 #This is 2O(n) and therefore linear
+# it's actually 0(n!) as permutation is a factorial.
+# I forgot.
 def first_anagram?(first, second)
     chk = first.split("")
 
@@ -25,12 +27,17 @@ def sec_anagram?(first, second)
 end
 
 #4O(n) or just O(n)
+# Actually this is nlog(n) due to the fact sort is used.
+# Ruby utilizes quicksort which is log(n)
+# As such, char is an enumerable meaning the worst case will be nlog(n)
+
 def third_anagram?(first, second)
 
     return first.chars.sort.join == second.chars.sort.join
 
 end
 
+# O(n)
 def fourth_anagram?(first,second)
     chk = Hash.new
 
