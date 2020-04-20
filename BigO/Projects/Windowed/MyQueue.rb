@@ -1,7 +1,7 @@
 class MyQueue
 
-    def initialize
-        @store = []
+    def initialize(store = [])
+        @store = store
     end
 
     def enqueue(ele)
@@ -12,17 +12,18 @@ class MyQueue
         @store.shift
     end
     
+    #Solution has this as LAST element. But a queue is FIFO. Therefore, the next element in a queue would be the first one.
     def peek
         @store[0]
     end
 
     def size
-        @store.length
+        @store.size
     end
 
     def empty?
         @store.empty?
     end
-    
+
 
 end
