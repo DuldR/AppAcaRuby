@@ -1,0 +1,46 @@
+div {
+  height: 200px;
+  width: 400px;
+  min-width: 400px;
+  padding: 50px;
+  border: 5px solid black;
+}
+
+#first-div {
+  background-color: #39cccc;
+}
+
+#second-div {
+  background-color: #ff4136;
+  box-sizing: border-box;
+}
+
+#third-div {
+  background-color:green;
+  height: 100%;
+
+}
+
+.image-1-container {
+  background-color: blue;
+  height: 600px;
+  width: 200px;
+
+
+}
+
+.image-2-container {
+  background-color: blue;
+  display: inline-block;
+  height: 100%;
+  min-width: 200px;
+  width: auto;
+  padding: 50px;
+
+
+}
+
+
+p {
+  background-color: #7fdbff;
+}
