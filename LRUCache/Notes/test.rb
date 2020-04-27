@@ -1,22 +1,12 @@
 class Butt
 
     def initialize
-        @weiner = true
+        @weiner = []
     end
 
-    def hungry?
-        p @weiner
-
-        idk
+    def huh(chk)
+        @weiner << chk.hash
     end
-
-
-    private
-
-    def idk
-        p @weiner
-    end
-
 
 
 end
