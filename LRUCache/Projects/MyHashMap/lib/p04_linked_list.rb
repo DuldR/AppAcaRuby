@@ -17,7 +17,7 @@ class Node
     # optional but useful, connects previous link to next link
     # and removes self from list.
 
-    
+
   end
 end
 
@@ -103,18 +103,18 @@ class LinkedList
 
   def remove(key)
 
-    if self.include?(key) == true
-      self.each do |node|
-        if node.key == key
-          old_prev = node.prev
-          old_next = node.next
+    self.each do |node|
+      if node.key == key
+        old_prev = node.prev
+        old_next = node.next
 
-          old_prev.next = old_next
-          old_next.prev = old_prev
-        end
+        old_prev.next = old_next
+        old_next.prev
+        old_prev
       end
     end
 
+    nil
 
   end
 
