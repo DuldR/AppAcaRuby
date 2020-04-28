@@ -1,7 +1,7 @@
 require_relative 'p04_linked_list'
 
 class HashMap
-  attr_accessor :count
+  attr_accessor :count, :store
 
   def initialize(num_buckets = 8)
     @store = Array.new(num_buckets) { LinkedList.new }
@@ -9,12 +9,22 @@ class HashMap
   end
 
   def include?(key)
+    if bucket(key).empty?
+      return false
+    else
+      bucket(key).each do |node|
+        if node.key == key
+          return true
+        end
+      end
+    end   
   end
 
   def set(key, val)
   end
 
   def get(key)
+
   end
 
   def delete(key)
@@ -45,5 +55,7 @@ class HashMap
 
   def bucket(key)
     # optional but useful; return the bucket corresponding to `key`
+
+    @store[key.hash % num_buckets]
   end
 end

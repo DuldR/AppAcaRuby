@@ -109,8 +109,7 @@ class LinkedList
         old_next = node.next
 
         old_prev.next = old_next
-        old_next.prev
-        old_prev
+        old_next.prev = old_prev
       end
     end
 
