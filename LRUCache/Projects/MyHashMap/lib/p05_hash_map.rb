@@ -21,9 +21,26 @@ class HashMap
   end
 
   def set(key, val)
+
+    bucket(key).each do |node|
+      if node.key == key
+        node.val = val
+      end
+    end
+
+    bucket(key).append(key,val)
+      
   end
 
   def get(key)
+
+
+    bucket(key).each do |node|
+      return node.val if node.key == key
+    end
+
+
+    nil
 
   end
 
