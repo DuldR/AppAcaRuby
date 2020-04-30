@@ -74,6 +74,8 @@ class LinkedList
       end
     end
 
+    nil
+
   end
 
   def include?(key)
