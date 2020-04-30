@@ -27,6 +27,9 @@ class StaticArray
 end
 
 class DynamicArray
+
+  include Enumerable
+
   attr_accessor :count, :store
 
   def initialize(capacity = 8)
@@ -43,7 +46,7 @@ class DynamicArray
   end
 
   def []=(i, val)
-    if @count == capacity
+    until i < self.capacity
       resize!
     end
 
@@ -57,11 +60,27 @@ class DynamicArray
   end
 
   def include?(val)
+    self.each do |int|
+      if int == val
+        return true
+      end
+    end
+
+    return false
+
   end
 
   def push(val)
-    self.store[count] = val
+
+    if @store.length == @count
+      resize!
+    end
+
+    self.store[@count] = val
     self.count += 1
+
+
+
   end
 
   def unshift(val)
@@ -95,29 +114,43 @@ class DynamicArray
 
   def shift
     old_count = @count
+    return_val = @store[0]
     if @count == 0
       return nil
     else
       @count -= 1
-
       @store[0] = nil
 
-      while old_count > 0
+      while old_count > 1
         old_val = @store[old_count - 1]
         @store[old_count - 2] = old_val
         old_count -= 1
       end
     end
+
+    return_val
     
   end
 
   def first
+    @store[0]
   end
 
   def last
+    @store[@count - 1]
   end
 
   def each
+    iter = 0
+
+    while iter <= @count - 1
+      if @store[iter] != nil
+        yield @store[iter]
+      end
+
+      iter += 1
+    end
+
   end
 
   def to_s
@@ -136,6 +169,17 @@ class DynamicArray
 
   def resize!
     old_store = @store
+    iter = 0
+
+  
+    @store = StaticArray.new(self.capacity * 2)
+
+
+    while iter < @count
+      @store[iter] = old_store[iter]
+      iter += 1
+    end
+
 
   end
 end
