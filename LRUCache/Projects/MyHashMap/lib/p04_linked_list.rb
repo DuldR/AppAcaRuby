@@ -25,6 +25,9 @@ class LinkedList
 
   include Enumerable
 
+
+  attr_reader :head, :tail
+
   def initialize
     @head = Node.new
     @tail = Node.new
@@ -118,7 +121,7 @@ class LinkedList
   end
 
   def each
-    currentNode = self.first
+    currentNode = self.head.next
 
     until currentNode == @tail
       yield currentNode

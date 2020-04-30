@@ -5,7 +5,11 @@ class Butt
     end
 
     def huh(chk)
-        @weiner << chk.hash
+        self.weiner << chk.hash
+    end
+
+    def ah
+        p self.weiner
     end
 
 

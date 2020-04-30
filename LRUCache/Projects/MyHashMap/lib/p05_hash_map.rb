@@ -99,7 +99,19 @@ class HashMap
   end
 
   def resize!
-    (num_buckets).times { @store << LinkedList.new }
+    old_pairs = []
+
+    self.each do |k, v|
+      old_pairs << [k, v]
+    end
+
+    @store = Array.new(num_buckets * 2) { LinkedList.new }
+    @count = 0
+    
+    old_pairs.each do |pair|
+      self.set(pair[0], pair[1])
+    end
+
   end
 
   def bucket(key)
