@@ -19,7 +19,7 @@ class StaticArray
     self.store.length
   end
 
-  # private
+  private
 
   def validate!(i)
     raise "Overflow error" unless i.between?(0, self.store.length - 1)
@@ -35,7 +35,11 @@ class DynamicArray
   end
 
   def [](i)
-    self.store[i]
+    if i > capacity - 1
+      return nil
+    else
+      self.store[i]
+    end
   end
 
   def []=(i, val)
@@ -66,13 +70,8 @@ class DynamicArray
 
     while old_count > 0
       old_val = @store[old_count - 1]
-      p @store
-      # @store[old_count] = old_val
-      p "First"
-      p old_count
+      @store[old_count] = old_val
       old_count -= 1
-      p "After"
-      p old_count
     end
 
     self.store[0] = val
@@ -103,13 +102,13 @@ class DynamicArray
 
       @store[0] = nil
 
-      # while old_count > 0
-      #   old_val = @store[old_count - 1]
-      #   @store[old_count - 2] = old_val
-      #   old_count -= 1
-      # end
+      while old_count > 0
+        old_val = @store[old_count - 1]
+        @store[old_count - 2] = old_val
+        old_count -= 1
+      end
     end
-
+    
   end
 
   def first
