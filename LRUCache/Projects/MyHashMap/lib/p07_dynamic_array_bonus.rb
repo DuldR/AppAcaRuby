@@ -160,6 +160,19 @@ class DynamicArray
   def ==(other)
     return false unless [Array, DynamicArray].include?(other.class)
     # ...
+
+    return_arr = []
+    check_arr = []
+
+    self.each do |x|
+      return_arr << x
+    end
+
+    other.each do |x|
+      check_arr << x
+    end
+
+    return return_arr == check_arr
   end
 
   alias_method :<<, :push
