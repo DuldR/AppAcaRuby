@@ -51,7 +51,7 @@ class DynamicArray
     elsif i > capacity - 1
       return nil
     else
-      self.store[i]
+      return self.store[i]
     end
   end
 
@@ -110,11 +110,12 @@ class DynamicArray
     self.store[@count] = val
     self.count += 1
 
-
-
+    self
   end
 
   def unshift(val)
+    resize! if capacity == self.count
+
     old_count = @count
     @count += 1
 
@@ -125,7 +126,7 @@ class DynamicArray
     end
 
     self.store[0] = val
-
+    self
   end
 
   def pop
@@ -182,14 +183,14 @@ class DynamicArray
   def each
     iter = 0
 
-    while iter <= @count - 1
+    while iter <= @store.length - 1
       if @store[iter] != nil
         yield @store[iter]
       end
 
       iter += 1
     end
-
+    self
   end
 
   def to_s
@@ -200,16 +201,34 @@ class DynamicArray
     return false unless [Array, DynamicArray].include?(other.class)
     # ...
 
+    i = 0
+    j = (@store.length - 1)
     return_arr = []
     check_arr = []
+    neg_arr = []
+    final_index = 0
 
     self.each do |x|
-      return_arr << x
+      neg_arr << x
+    end
+
+    while j > 0
+      if @store[j] == neg_arr[-1]
+        break final_index = j
+      end
+      j -= 1
+    end
+
+
+    while i <= final_index
+      return_arr << self.store[i]
+      i += 1
     end
 
     other.each do |x|
       check_arr << x
     end
+
 
     return return_arr == check_arr
   end
