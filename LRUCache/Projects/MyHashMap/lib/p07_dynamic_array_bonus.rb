@@ -39,12 +39,17 @@ class DynamicArray
 
   def [](i)
 
-    if i > capacity - 1
+    if i < 0
+      neg_arr = []
+
+      self.each do |x|
+        neg_arr << x
+      end
+
+      return neg_arr[i]
+      
+    elsif i > capacity - 1
       return nil
-    elsif i == -1
-      self.last
-    elsif i < 0 && (i * -1) <= self.capacity
-      self.store[self.capacity - (i * -1)]
     else
       self.store[i]
     end
@@ -54,13 +59,26 @@ class DynamicArray
     until i < self.capacity
       resize!
     end
+    
+    neg_arr = []
+    final_index = 0
 
-    if i == -1
-      self.store[self.last]
-      self.count += 1
-    elsif i < 0 && (i * -1) <= self.capacity
-      self.store[self.capacity - (i * -1)] = val
-      self.count += 1
+    if i < 0
+      self.each do |x|
+        neg_arr << x
+      end
+
+      final_index = self.find_index(neg_arr[-1])
+
+
+      if i == -1
+        self.store[final_index] = val
+        self.count += 1
+      elsif i < 0 && (i * -1) <= final_index
+        self.store[final_index + (i * -1) + 1] = val
+        self.count += 1
+      end
+
     else
       self.store[i] = val
       self.count += 1
@@ -152,16 +170,13 @@ class DynamicArray
 
   def last
     final_index = 0
+    neg_arr = []
 
-    self.reverse_each.with_index do |x, i|
-      if x == nil
-        next
-      else
-        break final_index = (self.capacity - 2) - i
-      end
+    self.each do |x|
+      neg_arr << x
     end
 
-    @store[final_index]
+    return neg_arr[-1]
   end
 
   def each
