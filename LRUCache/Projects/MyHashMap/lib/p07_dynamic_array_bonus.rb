@@ -38,8 +38,13 @@ class DynamicArray
   end
 
   def [](i)
+
     if i > capacity - 1
       return nil
+    elsif i == -1
+      self.last
+    elsif i < 0 && (i * -1) <= self.capacity
+      self.store[self.capacity - (i * -1)]
     else
       self.store[i]
     end
@@ -50,8 +55,16 @@ class DynamicArray
       resize!
     end
 
-    self.store[i] = val
-    self.count += 1
+    if i == -1
+      self.store[self.last]
+      self.count += 1
+    elsif i < 0 && (i * -1) <= self.capacity
+      self.store[self.capacity - (i * -1)] = val
+      self.count += 1
+    else
+      self.store[i] = val
+      self.count += 1
+    end
 
   end
 
@@ -117,14 +130,17 @@ class DynamicArray
     return_val = @store[0]
     @store[0] = nil
 
-    while old_count < @count
+    while old_count < self.capacity
       old_val = @store[old_count]
       @store[old_count - 1] = old_val
       old_count += 1
     end
 
-    @store[@count - 1] = nil
-    @count -= 1
+    @store[self.capacity - 1] = nil
+    
+    if return_val != nil
+      @count -= 1
+    end
 
     return_val
     
@@ -135,7 +151,17 @@ class DynamicArray
   end
 
   def last
-    @store[@count - 1]
+    final_index = 0
+
+    self.reverse_each.with_index do |x, i|
+      if x == nil
+        next
+      else
+        break final_index = (self.capacity - 2) - i
+      end
+    end
+
+    @store[final_index]
   end
 
   def each
@@ -186,9 +212,15 @@ class DynamicArray
     @store = StaticArray.new(self.capacity * 2)
 
 
-    while iter < @count
-      @store[iter] = old_store[iter]
-      iter += 1
+    while iter < self.capacity
+      if iter >= old_store.length
+        iter += 1
+        next
+      else
+        @store[iter] = old_store[iter]
+        iter += 1
+      end
+
     end
 
 
