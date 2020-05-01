@@ -113,20 +113,18 @@ class DynamicArray
   end
 
   def shift
-    old_count = @count
+    old_count = 1
     return_val = @store[0]
-    if @count == 0
-      return nil
-    else
-      @count -= 1
-      @store[0] = nil
+    @store[0] = nil
 
-      while old_count > 1
-        old_val = @store[old_count - 1]
-        @store[old_count - 2] = old_val
-        old_count -= 1
-      end
+    while old_count < @count
+      old_val = @store[old_count]
+      @store[old_count - 1] = old_val
+      old_count += 1
     end
+
+    @store[@count - 1] = nil
+    @count -= 1
 
     return_val
     
